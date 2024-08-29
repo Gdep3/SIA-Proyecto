@@ -15,14 +15,19 @@ public class Supermercado {
         pasillos = new ArrayList();
         pasillosPorCategoria = new HashMap();
     }
-    public Supermercado(ArrayList<Pasillo> pasillos, HashMap<String, Pasillo> pasillosPorCategoria){
+    public Supermercado(ArrayList<Pasillo> pasillos, HashMap<String, 
+            Pasillo> pasillosPorCategoria){
+        
         pasillos = new ArrayList();
         this.pasillos.addAll(pasillos);
         
         pasillosPorCategoria = new HashMap();
         this.pasillosPorCategoria.putAll(pasillosPorCategoria);
     }
-    public Supermercado(ArrayList<Pasillo> pasillos, HashMap<String, Pasillo> pasillosPorCategoria, int ventas, int stockTotal){
+    public Supermercado(ArrayList<Pasillo> pasillos, 
+            HashMap<String, Pasillo> pasillosPorCategoria, 
+            int ventas, int stockTotal){
+        
         pasillos = new ArrayList();
         this.pasillos.addAll(pasillos);
         
@@ -45,8 +50,20 @@ public class Supermercado {
     public void listarPasillos(){
         for(int i = 0; i < pasillos.size(); i++){
             Pasillo pasillo = pasillos.get(i);
-            System.out.println("Categoria pasillo: " + pasillo.getCategoriaPasillo() + ", Stock del pasillo: " + pasillo.getStockPasillo());
+            System.out.println("Categoria pasillo: " + 
+                    pasillo.getCategoriaPasillo() + ", Stock del pasillo: " + 
+                    pasillo.getStockPasillo());
+             
             pasillo.listarProductos();
+        }
+    }
+    public void listarPasillos(String categoria){
+        for(int i = 0 ; i < pasillos.size() ; i++){
+            Pasillo pasillo = pasillos.get(i);
+            if(pasillo.getCategoriaPasillo().contains(categoria)){
+                System.out.println("* Pasillo con categoria: " + categoria);
+                System.out.println("* Stock del pasillo: " + pasillo.getStockPasillo());
+            }
         }
     }
     //Setters
