@@ -7,20 +7,24 @@ public class Pasillo {
     
     private ArrayList<Producto> productosPasillo;
 
+    public Pasillo(ArrayList<Producto> totalProductos, String categoriaPasillo, int stockPasillo) {
+        this.categoriaPasillo = categoriaPasillo;
+        this.stockPasillo = stockPasillo;
+        
+        this.productosPasillo = new ArrayList();
+        this.productosPasillo.addAll(totalProductos);
+    }
     public Pasillo(ArrayList<Producto> totalProductos, String categoriaPasillo) {
-
         this.categoriaPasillo = categoriaPasillo;
         
         this.productosPasillo = new ArrayList();
         this.productosPasillo.addAll(totalProductos);
     }
-    public Pasillo(String categoriaPasillo)
-    {
+    public Pasillo(String categoriaPasillo){
         this.categoriaPasillo = categoriaPasillo;
         this.productosPasillo = new ArrayList();    
     }
-    public Pasillo()
-    {
+    public Pasillo(){
         this.productosPasillo = new ArrayList();    
     }
 
@@ -93,20 +97,32 @@ public class Pasillo {
         else
             System.out.println("No se encuentra ese producto.");
     }
-    public void eliminarProducto(int index){
-        Producto producto1 = productosPasillo.get(index);
-     
-        if(productosPasillo.contains(producto1))
-            productosPasillo.remove(producto1);
-        else
-            System.out.println("Producto no encontrado.");
+    public boolean eliminarProducto(String nombre){
+        for(int i = 0; i < productosPasillo.size(); i++)
+        {
+            Producto producto = productosPasillo.get(i);
+            
+             if(producto.getNombre().equals(nombre)){
+                stockPasillo -= producto.getCantidad();
+                productosPasillo.remove(i);
+                return true;
+            }
+        } 
+        return false;  
     }
-    public void eliminarProducto(Producto producto1){
-        if(productosPasillo.contains(producto1))
-            productosPasillo.remove(producto1);
-        else
-            System.out.println("Producto no encontrado.");
-    }
+    //Tal vez no se utilize.
+   /* public boolean eliminarProducto(Producto producto1){
+        for(int i = 0; i < productosPasillo.size(); i++){
+            Producto producto = productosPasillo.get(i);
+            if(producto.equals(producto1)
+            {
+                stockPasillo -= producto.getStock();
+                productosPasillo.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }*/
     public void listarProductos(){
         for(int i = 0; i < productosPasillo.size(); i++){
             Producto producto = productosPasillo.get(i);

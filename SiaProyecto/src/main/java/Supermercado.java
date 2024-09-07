@@ -32,7 +32,7 @@ public class Supermercado {
         this.ventas = ventas;
         this.stockTotal = stockTotal;
     }
-    //Metodos varios
+    //Metodos varios.
     public void agregarPasillo(Pasillo pasillo1){
         if(pasillosPorCategoria.containsKey(pasillo1.getCategoriaPasillo())){
             System.out.println("Este pasillo ya existe en el supermercado.");
@@ -42,6 +42,24 @@ public class Supermercado {
         
         stockTotal += pasillo1.getStockPasillo();
     }
+    public void agregarPasillo(String categoria){
+        if(pasillosPorCategoria.containsKey(categoria)){
+            System.out.println("Este pasillo ya existe en el supermercado.");
+        }
+        Pasillo pasillo1 = new Pasillo(categoria);
+        
+        pasillosPorCategoria.put(pasillo1.getCategoriaPasillo(), pasillo1);
+        pasillos.add(pasillo1);
+        
+        stockTotal += pasillo1.getStockPasillo();
+    }
+
+    public Pasillo buscarPasillo(String categoria){
+        if(pasillosPorCategoria.containsKey(categoria)){
+            return pasillosPorCategoria.get(categoria);
+        }
+        return null;
+    }
     public void listarPasillos(){
         for(int i = 0; i < pasillos.size(); i++){
             Pasillo pasillo = pasillos.get(i);
@@ -49,6 +67,13 @@ public class Supermercado {
             pasillo.listarProductos();
         }
     }
+    /*public Pasillo buscarPasillo(String categoria){
+        for(int i = 0; i < pasillos.size();i++){
+            if(pasillos.get(i).getCategoriaPasillo().equals(categoria))
+                return pasillos.get(i);
+        }
+        return null;
+    }*/
     //Setters
     public void setVentas(int ventas){
         this.ventas = ventas;
