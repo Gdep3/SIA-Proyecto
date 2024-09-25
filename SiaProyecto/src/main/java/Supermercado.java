@@ -1,12 +1,10 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import java.io.*;
 
 public class Supermercado {
     int stockTotal;
     int ventas;
-    
     private ArrayList<Pasillo> pasillos; 
     private HashMap<String, Pasillo> pasillosPorCategoria;
     
@@ -18,11 +16,8 @@ public class Supermercado {
     public Supermercado(ArrayList<Pasillo> pasillos, HashMap<String, 
             Pasillo> pasillosPorCategoria){
         
-        pasillos = new ArrayList();
-        this.pasillos.addAll(pasillos);
-        
-        pasillosPorCategoria = new HashMap();
-        this.pasillosPorCategoria.putAll(pasillosPorCategoria);
+        this.pasillos = new ArrayList<>(pasillos);  // Crear nueva lista copiando los elementos
+        this.pasillosPorCategoria = new HashMap<>(pasillosPorCategoria);  // Crear nuevo mapa copiando los elementos
     }
     public Supermercado(ArrayList<Pasillo> pasillos, 
             HashMap<String, Pasillo> pasillosPorCategoria, 

@@ -4,7 +4,6 @@ import java.io.*;
 public class Pasillo {
     int stockPasillo;
     private String categoriaPasillo;
-    
     private ArrayList<Producto> productosPasillo;
 
     public Pasillo(ArrayList<Producto> totalProductos, String categoriaPasillo) {
