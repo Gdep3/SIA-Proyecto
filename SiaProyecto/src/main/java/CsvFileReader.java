@@ -2,7 +2,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CsvFileReader {
     private String delimiter;
@@ -11,19 +12,35 @@ public class CsvFileReader {
         this.delimiter = delimiter;
     }
 
-    public void leerCsv(String archivo) {
-        List<String[]> data;
-        data = new ArrayList<>();
+    public Supermercado leerCsv(String archivo) {
+        Map<String, Pasillo> pasillos_Categoria = new HashMap<>();
+        ArrayList<Pasillo> pasillos = new ArrayList<>();
         String line;
 
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(delimiter);
-                data.add(values);
-                System.out.println(line);
+                
+                String nombre = values[0];
+                String codigo = values[4];
+                String categoria = values[1];
+                int cantidad = 50;
+                double precio = 1000;
+                
+                Pasillo pasillo = pasillos_Categoria.getOrDefault(categoria, 
+                                                        new Pasillo(categoria));
+                
+                pasillo.agregarProducto(nombre,codigo,categoria,precio,cantidad);
+                if(!pasillos_Categoria.containsKey(categoria)){
+                    pasillos_Categoria.put(categoria, pasillo);
+                    pasillos.add(pasillo);
+                } 
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        return new Supermercado(pasillos, (HashMap<String, Pasillo>) pasillos_Categoria);
     }
 }
