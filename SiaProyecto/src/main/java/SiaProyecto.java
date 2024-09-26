@@ -24,7 +24,7 @@ public class SiaProyecto{
         
         while(true){
             
-            CsvFileReader archivo = new CsvFileReader(",");
+            CsvFileReader archivo = new CsvFileReader(";");
             supermercado = archivo.leerCsv("src/main/recursos/items.csv");
             
             textoMenu();
@@ -35,6 +35,7 @@ public class SiaProyecto{
             switch(entrada){
                 case "1":
                     añadirDatosPorConsola();
+                    //supermercado.guardarEnCsv("src/main/recursos/items.csv");
                     break;
                 case "2":
                     System.out.println("Función no implementada aún.");

@@ -1,5 +1,7 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,8 +27,8 @@ public class CsvFileReader {
                 String nombre = values[0];
                 String codigo = values[4];
                 String categoria = values[1];
-                int cantidad = 50;
-                double precio = 1000;
+                int cantidad = Integer.parseInt(values[2]);
+                int precio = Integer.parseInt(values[3]);
                 
                 Pasillo pasillo = pasillos_Categoria.getOrDefault(categoria, 
                                                         new Pasillo(categoria));

@@ -4,12 +4,12 @@ public class Producto {
     private String codigo;
     private String categoria;
     private int cantidad;
-    private double precio;
+    private int precio;
     
     //Constructor.
     public Producto(){
     }
-    public Producto(String nombre, String codigo, String categoria, double precio, int cantidad)
+    public Producto(String nombre, String codigo, String categoria, int precio, int cantidad)
     {
         this.nombre = nombre;
         this.codigo = codigo;
@@ -34,7 +34,7 @@ public class Producto {
     public void setCantidad(int cantidad){
         this.cantidad = cantidad;
     }
-    public void setPrecio(double precio){
+    public void setPrecio(int precio){
         if(precio >= 0)
             this.precio = precio;
     }

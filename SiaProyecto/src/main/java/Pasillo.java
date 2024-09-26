@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.io.*;
 
 public class Pasillo {
     int stockPasillo;
@@ -22,6 +21,7 @@ public class Pasillo {
     {
         this.productosPasillo = new ArrayList();    
     }
+    
 
     //Metodos.
     public void agregarProducto(Producto producto){
@@ -32,7 +32,7 @@ public class Pasillo {
         stockPasillo += producto.getCantidad();
         productosPasillo.add(producto);
     }
-    public void agregarProducto(String nombre, String codigo, String categoria, double precio, int cantidad){
+    public void agregarProducto(String nombre, String codigo, String categoria, int precio, int cantidad){
         Producto producto = new Producto(nombre, codigo, categoria, precio, cantidad);
         
         if(productosPasillo.contains(producto)){
@@ -51,7 +51,7 @@ public class Pasillo {
             
             productoPasillo.setCategoria(codigo);  
             
-            productoPasillo.setPrecio(Double.parseDouble(precio));
+            productoPasillo.setPrecio(Integer.parseInt(precio));
         }
         else
             System.out.println("No se encuentra ese producto.");
@@ -78,7 +78,7 @@ public class Pasillo {
         if(productosPasillo.contains(producto)){
            int index = productosPasillo.indexOf(producto);
             
-            productosPasillo.get(index).setPrecio(Double.parseDouble(precio));
+            productosPasillo.get(index).setPrecio(Integer.parseInt(precio));
         }
         else
             System.out.println("No se encuentra ese producto.");
@@ -128,5 +128,9 @@ public class Pasillo {
     }
     public int getStockPasillo(){
         return stockPasillo;
+    }
+
+    public ArrayList<Producto> getProductos() {
+        return productosPasillo;
     }
 } 

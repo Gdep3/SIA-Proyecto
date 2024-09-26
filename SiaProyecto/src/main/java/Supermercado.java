@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,8 +19,8 @@ public class Supermercado {
     public Supermercado(ArrayList<Pasillo> pasillos, HashMap<String, 
             Pasillo> pasillosPorCategoria){
         
-        this.pasillos = new ArrayList<>(pasillos);  // Crear nueva lista copiando los elementos
-        this.pasillosPorCategoria = new HashMap<>(pasillosPorCategoria);  // Crear nuevo mapa copiando los elementos
+        this.pasillos = new ArrayList<>(pasillos);  
+        this.pasillosPorCategoria = new HashMap<>(pasillosPorCategoria);
     }
     public Supermercado(ArrayList<Pasillo> pasillos, 
             HashMap<String, Pasillo> pasillosPorCategoria, 
@@ -32,7 +35,29 @@ public class Supermercado {
         this.ventas = ventas;
         this.stockTotal = stockTotal;
     }
+    
     //Metodos varios
+    
+    public void guardarEnCsv(String archivoDestino) throws IOException{
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(archivoDestino))){
+            bw.write("Nombre;Categoria;Codigo;Precio;Cantidad");
+            bw.newLine();
+            
+            for(Pasillo pasillo : pasillos){
+                for(Producto producto : pasillo.getProductos()){
+                    bw.write(producto.getNombre() + ";" +
+                             producto.getCategoria()+ ";" +
+                             producto.getCodigo() + ";" +
+                             producto.getPrecio() + ";" +
+                             producto.getCantidad());
+                    bw.newLine();
+                }
+            }
+        } catch (IOException e){
+            System.out.println("Error al escribir en el archivo Csv");
+        }
+    }
+    
     public void agregarPasillo(Pasillo pasillo1){
         if(pasillosPorCategoria.containsKey(pasillo1.getCategoriaPasillo())){
             System.out.println("Este pasillo ya existe en el supermercado.");
