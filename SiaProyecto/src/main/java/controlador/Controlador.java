@@ -11,6 +11,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 
+/*
+Esta clase se encarga de coecionar las funciones del programa con las ventanas
+manejando distintos errores que puedan suceder, tambien de ultilizando distintos
+metodos, tanto de otras clases como propios. Ultiliza libreirias para realizar
+distintas tareas para las ventanas.
+*/
+
 public class Controlador implements ActionListener{
     private Supermercado supermercado;
     private Menu menu;
@@ -22,6 +29,7 @@ public class Controlador implements ActionListener{
     private VentanaListar ventanaListar;
     private VentanaAgregar menuAgregar;
     
+    //funcion para iniciar el programa 
     public void iniciar(){
         supermercado = new Supermercado();
         CsvFileReader archivo = new CsvFileReader(";");

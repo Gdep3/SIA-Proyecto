@@ -9,13 +9,21 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+/*
+Esta clase se encarga de crear el menu del programa y la interfaz
+, tambien implementa algunas funcionescomo el mostrar manejando las respectivas 
+    excepciones para cada funcion
+*/
+
 public class Menu {
+    //varaible supermercado para usar nuestro supermercado
     private Supermercado supermercado;
     
+    //contructor
     public Menu(Supermercado supermercado){
         this.supermercado = supermercado;
     }
-    
+    //funcion para mostrar el menu
     public void textoMenu(){
         System.out.println("1. Agregar datos");
 
@@ -29,6 +37,8 @@ public class Menu {
         
         System.out.println("Presione 'x' para salir");
     }
+    
+    //Funcion para el menu principal y elegir cada funcion del menu
     public void menuPrincipal()throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         
@@ -58,13 +68,12 @@ public class Menu {
             }
         }
     }
-    
+    //funcion para añadir datos al supermercado
     public void añadirDatos(){
         
     }
-
+    //funcion para eliminar los datos del supermercado
     public void eliminarDatos()throws IOException{
-        //Se debe mejorar la logica de eliminacion para que sea mas intuitiva, es decir, que tal vez solo dependa del nombre del producto.
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         
         System.out.println("Ingrese la categoria del producto: ");
@@ -84,6 +93,7 @@ public class Menu {
         System.out.println("Producto eliminado correctamente.");
        
     }
+    //funcion para mostrar el menu de añadir datos (submenu)
     public void textoMenuAñadirDatos(){
         System.out.println("1. Agregar producto");
 
@@ -91,6 +101,8 @@ public class Menu {
         
         System.out.println("Presione 'x' para salir");
     }
+    
+    //menu para añadir datos por consola
     public void menuAñadirDatosPorConsola() throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         
@@ -110,12 +122,16 @@ public class Menu {
             }
         }
     }
+    
+    //funcion para mostrar los productos por pantalla
     public void listarProductos(){
         ArrayList pasillos = supermercado.obtenerPasillos();
         for(int i = 0; i < pasillos.size(); i++){
             ((Pasillo)pasillos.get(i)).listarProductos();
         }
     }
+    
+    //funcion para mostrar los productos por pantalla pero retorna una string
     public String listaProductos(){
         ArrayList pasillos = supermercado.obtenerPasillos();
         String ret;
@@ -129,11 +145,15 @@ public class Menu {
         }
         return ret;
     }
+    
+    //funcion para añadir un producto
     public void añadirProducto(Producto producto1){
         Pasillo pasillo1 = supermercado.buscarPasillo(producto1.getCategoria());
         
         pasillo1.agregarProducto(producto1);
     }
+    
+    //funcion para añadir un producto por consola
     public void añadirProductoPorConsola()throws IOException {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         Producto producto1 = new Producto();
@@ -213,6 +233,8 @@ public class Menu {
                 
         System.out.println("Producto agregado correctamente.");
     }
+    
+    //fuincion para añadir pasillos por consola
     public void añadirPasilloPorConsola()throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
 

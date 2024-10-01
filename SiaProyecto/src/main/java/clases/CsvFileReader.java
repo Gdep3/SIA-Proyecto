@@ -7,13 +7,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CsvFileReader {
-    private String delimiter;
+/*
+Esta clase se encarga de las funciones de leer el csv mediante el bufferedReader
+y el FileReader, esta retorna una coleccion supermercado la cual sera el 
+supermercado con todos los productos dentro para poder modificar
+con cualquier funcion del supermercado este archivo tipo csv.
+*/
 
+public class CsvFileReader {
+    //variable que sera el delimitador en nuestro archivo csv
+    private String delimiter;
+    
+    //Constructor
     public CsvFileReader(String delimiter) {
         this.delimiter = delimiter;
     }
-
+    
+    //Funcion para leer el csv
     public Supermercado leerCsv(String archivo) {
         Map<String, Pasillo> pasillos_Categoria = new HashMap<>();
         ArrayList<Pasillo> pasillos = new ArrayList<>();

@@ -6,11 +6,11 @@ import excepciones.NameException;
 import excepciones.NumberException;
 import excepciones.CategoryException;
 
-
-/**
- * 
- * @author isica
- */
+/*
+Esta clase se encarga de crear los productos dentro del supermercado, dandole 
+valores y administrando las variables que lo componen con sus metodos
+setter y getter respectivamente.
+*/
 
 public class Producto {
     private String nombre;
@@ -19,7 +19,7 @@ public class Producto {
     private int cantidad = -1;
     private int precio = -1;
     
-    //Constructor.
+    //Constructores.
     public Producto(){
     }
     public Producto(String nombre, String codigo, String categoria, int precio, int cantidad)
