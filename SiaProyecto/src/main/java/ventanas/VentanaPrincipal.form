@@ -32,11 +32,6 @@
               <EmptySpace pref="75" max="32767" attributes="0"/>
           </Group>
           <Component id="subtitulo" alignment="0" max="32767" attributes="0"/>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="160" max="32767" attributes="0"/>
-              <Component id="botonSalir" pref="151" max="32767" attributes="0"/>
-              <EmptySpace pref="160" max="32767" attributes="0"/>
-          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -51,9 +46,7 @@
                   <Component id="botonCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botonGerente" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="botonSalir" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="68" max="32767" attributes="0"/>
+              <EmptySpace pref="121" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,11 +64,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonGerenteActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="botonSalir">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Salir"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="subtitulo">
       <Properties>

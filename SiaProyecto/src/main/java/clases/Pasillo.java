@@ -34,13 +34,14 @@ public class Pasillo {
     }
 
     //Metodos.
-    public void agregarProducto(Producto producto){
+    public boolean agregarProducto(Producto producto){
         if(productosPasillo.contains(producto)){
             System.out.println("El producto ya se encuentra en la lista.");
-            return;
+            return false;
         }
         stockPasillo += producto.getCantidad();
         productosPasillo.add(producto);
+        return true;
     }
     public void agregarProducto(String nombre, String codigo, String categoria, double precio, int cantidad){
         Producto producto = new Producto(nombre, codigo, categoria, precio, cantidad);
@@ -97,6 +98,14 @@ public class Pasillo {
         }
         else
             System.out.println("No se encuentra ese producto.");
+    }
+    public Producto buscarProducto(String nombre){
+        for(int i = 0; i < productosPasillo.size(); i++){
+            Producto producto = productosPasillo.get(i);
+            if(producto.getNombre().equalsIgnoreCase(nombre))
+                return producto;
+        }
+        return null;
     }
     public boolean eliminarProducto(String nombre){
         for(int i = 0; i < productosPasillo.size(); i++)

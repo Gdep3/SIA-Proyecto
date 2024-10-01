@@ -30,7 +30,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         botonCliente = new javax.swing.JButton();
         botonGerente = new javax.swing.JButton();
-        botonSalir = new javax.swing.JButton();
         subtitulo = new javax.swing.JLabel();
         titulo = new javax.swing.JLabel();
 
@@ -44,8 +43,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 botonGerenteActionPerformed(evt);
             }
         });
-
-        botonSalir.setText("Salir");
 
         subtitulo.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         subtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -67,10 +64,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(botonGerente, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                 .addContainerGap(75, Short.MAX_VALUE))
             .addComponent(subtitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(160, Short.MAX_VALUE)
-                .addComponent(botonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                .addContainerGap(160, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,9 +76,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonCliente)
                     .addComponent(botonGerente))
-                .addGap(30, 30, 30)
-                .addComponent(botonSalir)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         pack();
@@ -96,9 +87,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public JButton getBotonGerente(){
         return botonGerente;
     }
-    public JButton getBotonSalir(){
-        return botonSalir;
-    }
     
     private void botonGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGerenteActionPerformed
         // TODO add your handling code here:
@@ -108,7 +96,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCliente;
     private javax.swing.JButton botonGerente;
-    private javax.swing.JButton botonSalir;
     private javax.swing.JLabel subtitulo;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables

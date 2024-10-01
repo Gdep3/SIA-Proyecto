@@ -5,6 +5,7 @@ import excepciones.CodeException;
 import excepciones.NameException;
 import excepciones.NumberException;
 import excepciones.CategoryException;
+import excepciones.CorridorException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -111,6 +112,13 @@ public class Menu {
         System.out.println("Producto eliminado correctamente.");
        
     }
+    public void eliminarProducto(String nombre){
+        ArrayList<Pasillo> pasillos = supermercado.obtenerPasillos();
+        for(int i = 0; i < pasillos.size(); i++){
+            if(((Pasillo)pasillos.get(i)).buscarProducto(nombre) != null)
+                ((Pasillo)pasillos.get(i)).eliminarProducto(nombre);
+        }
+    }
     public void textoMenuAñadirDatos(){
         System.out.println("1. Agregar producto");
 
@@ -156,10 +164,12 @@ public class Menu {
         }
         return ret;
     }
-    public void añadirProducto(Producto producto1){
+    public void añadirProducto(Producto producto1) throws CorridorException{
         Pasillo pasillo1 = supermercado.buscarPasillo(producto1.getCategoria());
-        
-        pasillo1.agregarProducto(producto1);
+        if(pasillo1 != null)
+            pasillo1.agregarProducto(producto1);
+        else
+            throw new CorridorException("Pasillo invalido.");
     }
     public void añadirProductoPorConsola()throws IOException {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));

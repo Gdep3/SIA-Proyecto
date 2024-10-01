@@ -43,7 +43,7 @@ public class Producto {
             throw new NameException("Nombre no valido");
     }
     public void setCodigo(String codigo) throws CodeException{
-        if(codigo.length() == 13)
+        if(codigo.length() == 12)
             this.codigo = codigo;
         else
             throw new CodeException("Largo del codigo no valido.");

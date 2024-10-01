@@ -7,6 +7,9 @@ import ventanas.*;
 
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Isidora Osorio
@@ -27,31 +30,31 @@ public class Controlador implements ActionListener{
 
         
         Pasillo pasillo1 = new Pasillo("Lacteos");
-        pasillo1.agregarProducto("Leche", "1234567891234", "Lacteos", 910, 12);
-        pasillo1.agregarProducto("Yogurt", "8743673138888", "Lacteos", 800, 10);
-        pasillo1.agregarProducto("Queso Mozzarella", "7879003434360", "Lacteos", 1000, 9);
-        pasillo1.agregarProducto("Leche desnatada", "4857352850339", "Lacteos", 940, 30);
+        pasillo1.agregarProducto("Leche", "123456789123", "Lacteos", 910, 12);
+        pasillo1.agregarProducto("Yogurt", "874367313888", "Lacteos", 800, 10);
+        pasillo1.agregarProducto("Queso Mozzarella", "787900343436", "Lacteos", 1000, 9);
+        pasillo1.agregarProducto("Leche desnatada", "485735285033", "Lacteos", 940, 30);
         supermercado.agregarPasillo(pasillo1);
         
         pasillo1 = new Pasillo("Liquidos");
-        pasillo1.agregarProducto("Coca-cola", "1898413626054", "Liquidos", 500, 12);
-        pasillo1.agregarProducto("Jugo de naranja", "4505026055525", "Liquidos", 450, 10);
-        pasillo1.agregarProducto("Jugo de durazno", "0076964145370", "Liquidos", 500, 13);
-        pasillo1.agregarProducto("Pepsi", "7670856898723", "Liquidos", 450, 10);
+        pasillo1.agregarProducto("Coca-cola", "189841362605", "Liquidos", 500, 12);
+        pasillo1.agregarProducto("Jugo de naranja", "450502605552", "Liquidos", 450, 10);
+        pasillo1.agregarProducto("Jugo de durazno", "007696414537", "Liquidos", 500, 13);
+        pasillo1.agregarProducto("Pepsi", "767085689872", "Liquidos", 450, 10);
         supermercado.agregarPasillo(pasillo1);
 
         pasillo1 = new Pasillo("Congelados");
-        pasillo1.agregarProducto("Calamar", "3762166803090", "Congelador", 1200, 12);
-        pasillo1.agregarProducto("Nuggets de pollo", "2379247108455", "Congelador", 500, 30);
-        pasillo1.agregarProducto("Reineta", "5573775502958", "Congelador", 2000, 25);
-        pasillo1.agregarProducto("Chuleta de cerdo", "2943275647464", "Congelador", 2500, 40);
+        pasillo1.agregarProducto("Calamar", "376216680309", "Congelador", 1200, 12);
+        pasillo1.agregarProducto("Nuggets de pollo", "237924710845", "Congelador", 500, 30);
+        pasillo1.agregarProducto("Reineta", "557377550295", "Congelador", 2000, 25);
+        pasillo1.agregarProducto("Chuleta de cerdo", "294327564746", "Congelador", 2500, 40);
         supermercado.agregarPasillo(pasillo1);
 
         pasillo1 = new Pasillo("Cuidado personal");
-        pasillo1.agregarProducto("Shampoo", "8055018996603", "Cuidado personal", 1250, 20);
-        pasillo1.agregarProducto("Jabón", "7485067539126", "Cuidado personal", 1200, 30);
-        pasillo1.agregarProducto("Perfume", "4273094929419", "Cuidado personal", 2500, 25);
-        pasillo1.agregarProducto("Pasta de dientes", "0849435039922", "Cuidado personal", 1000, 40);
+        pasillo1.agregarProducto("Shampoo", "805501899660", "Cuidado personal", 1250, 20);
+        pasillo1.agregarProducto("Jabón", "748506753912", "Cuidado personal", 1200, 30);
+        pasillo1.agregarProducto("Perfume", "427309492941", "Cuidado personal", 2500, 25);
+        pasillo1.agregarProducto("Pasta de dientes", "084943503992", "Cuidado personal", 1000, 40);
         supermercado.agregarPasillo(pasillo1);
         
         menu = new Menu(supermercado);
@@ -60,11 +63,11 @@ public class Controlador implements ActionListener{
         
         menuMain.getBotonCliente().addActionListener(this);
         menuMain.getBotonGerente().addActionListener(this);
-        menuMain.getBotonSalir().addActionListener(this);
         
         menuMain.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         menuMain.setTitle("Menu Inicio");
         menuMain.setLocationRelativeTo(null);
+        menuMain.setResizable(false);
         menuMain.setVisible(true);
     }
     //Se deberian hacer dos controladores para las opciones de menu cliente y otro para de empleado.
@@ -81,6 +84,7 @@ public class Controlador implements ActionListener{
             menuCliente.setAlwaysOnTop(true);
             menuCliente.setTitle("Menu Cliente");
             menuCliente.setLocationRelativeTo(null);
+            menuCliente.setResizable(false);
             menuCliente.setVisible(true);
             return;
         }
@@ -96,11 +100,8 @@ public class Controlador implements ActionListener{
             menuEmpleado.setAlwaysOnTop(true);
             menuEmpleado.setTitle("Menu Empleado");
             menuEmpleado.setLocationRelativeTo(null);
+            menuEmpleado.setResizable(false);
             menuEmpleado.setVisible(true);
-            return;
-        }
-        if(ee.getSource() == menuMain.getBotonSalir()){
-            menuMain.dispose();
             return;
         }
         if(menuCliente != null && ee.getSource() == menuCliente.getBotonBuscar()){
@@ -116,6 +117,7 @@ public class Controlador implements ActionListener{
             menuBuscar.setAlwaysOnTop(true);
             menuBuscar.setTitle("Menu Busqueda");
             menuBuscar.setLocationRelativeTo(null);
+            menuBuscar.setResizable(false);
             menuBuscar.setVisible(true);
             return;
         }
@@ -130,6 +132,7 @@ public class Controlador implements ActionListener{
             ventanaListar.setAlwaysOnTop(true);
             ventanaListar.setTitle("Listar Productos");
             ventanaListar.setLocationRelativeTo(null);
+            ventanaListar.setResizable(false);
             ventanaListar.setVisible(true);
             return;
         }
@@ -147,6 +150,7 @@ public class Controlador implements ActionListener{
             menuAgregar.setAlwaysOnTop(true);
             menuAgregar.setTitle("Menu Agregar");
             menuAgregar.setLocationRelativeTo(null);
+            menuAgregar.setResizable(false);
             menuAgregar.setVisible(true);
             return;
         }
@@ -161,6 +165,7 @@ public class Controlador implements ActionListener{
             ventanaListar.setAlwaysOnTop(true);
             ventanaListar.setTitle("Listar Productos");
             ventanaListar.setLocationRelativeTo(null);
+            ventanaListar.setResizable(false);
             ventanaListar.setVisible(true);
             return;
         }
@@ -178,43 +183,73 @@ public class Controlador implements ActionListener{
                producto1.setNombre(agregarProducto.getCampoNombre().getText());
             }catch(NameException e){
                 System.out.println("Nombre invalido.");
+                agregarProducto.dispose();
+                return;
             }catch(Exception e){
                System.out.println("Error al ingresar el nombre.");
+               agregarProducto.dispose();
+               return;
             }
             
             try{
                 producto1.setCodigo(agregarProducto.getCampoCodigo().getText());
             }catch(CodeException e){
-                System.out.println("Codigo Invalido.");
+                JOptionPane.showMessageDialog(agregarProducto, "Codigo Invalido.\nDebe contener 12 caracteres", "Error al ingresar el codigo", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+                return;
             }catch(Exception e){
-                System.out.println("Error al ingresar el codigo.");
+                JOptionPane.showMessageDialog(agregarProducto, "Error al ingresar el codigo.\nIntente nuevamente.", "Error al ingresar el codigo", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+                return;
             }
             
             try{
                 producto1.setCategoria(agregarProducto.getCampoCategoria().getText());
             }catch(CategoryException e){
-                System.out.println("Categoria invalida.");
+                JOptionPane.showMessageDialog(agregarProducto, "Categoria Invalida.\nIntente nuevamente.", "Error al ingresar la categoria", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+                return;
             }catch(Exception e){
-                System.out.println("Error al ingresar la categoria.");
+                JOptionPane.showMessageDialog(agregarProducto, "Error al ingresar la categoria.\nIntente nuevamente.", "Error al ingresar la categoria", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+               return;
             }
             
             try{
                 producto1.setPrecio(Double.parseDouble(agregarProducto.getCampoPrecio().getText()));
             }catch(NumberException e){
-                System.out.println("Precio invalido.");
+                JOptionPane.showMessageDialog(agregarProducto, "Precio invalido.\nIngrese un número entero positivo.", "Error al ingresar el precio", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+                return;
             }catch(Exception e){
-                System.out.println("Error al ingresar el precio.");
+                JOptionPane.showMessageDialog(agregarProducto, "Error al ingresa el precio.\nIntente nuevamente.", "Error al ingresar el precio", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+                return;
             }
             
             try{
                 producto1.setCantidad(Integer.parseInt(agregarProducto.getCampoCantidad().getText()));
             }catch(NumberException e){
-                System.out.println("Cantidad invalida.");
+                JOptionPane.showMessageDialog(agregarProducto, "Cantidad invalida.\nIngrese un número entero positivo.", "Error al ingresar la cantidad", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+                return;
             }catch(Exception e){
-                System.out.println("Error al ingresar la cantidad.");
+                JOptionPane.showMessageDialog(agregarProducto, "Error al ingresa la cantidad.\nIntente nuevamente.", "Error al ingresar la cantidad", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+                return;
             }
 
-            menu.añadirProducto(producto1);
+            try{
+                menu.añadirProducto(producto1);
+            }catch(CorridorException e){
+                JOptionPane.showMessageDialog(agregarProducto, "Pasillo ingresado no es valido.\nIngrese un pasillo existente", "Error al ingresar el producto", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+                return;
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(agregarProducto, "Error al añadir producto.\nIntente nuevamente.", "Error al ingresar el producto", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+                return;
+            }
             agregarProducto.dispose();
             return;
         }
@@ -231,6 +266,7 @@ public class Controlador implements ActionListener{
             agregarProducto.setAlwaysOnTop(true);
             agregarProducto.setTitle("Agregar Producto");
             agregarProducto.setLocationRelativeTo(null);
+            agregarProducto.setResizable(false);
             agregarProducto.setVisible(true);
         }
         if(menuAgregar != null && ee.getSource() == menuAgregar.getBotonAgregarPasillo()){
@@ -241,7 +277,13 @@ public class Controlador implements ActionListener{
             return;
         }
         if(ventanaListar != null && ee.getSource() == ventanaListar.getBotonVolverVentanaListar()){
-            ventanaListar.dispose();;
+            ventanaListar.dispose();
+            return; 
+        }
+        if(ventanaListar != null && ee.getSource() == ventanaListar.getBotonEliminarVentanaListar()){
+            return; 
+        }        
+        if(ventanaListar != null && ee.getSource() == ventanaListar.getBotonModificarVentanaListar()){
             return; 
         }
     }
