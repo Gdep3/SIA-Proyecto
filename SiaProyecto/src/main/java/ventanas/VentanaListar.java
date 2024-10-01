@@ -5,6 +5,7 @@
 package ventanas;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -97,13 +98,13 @@ public class VentanaListar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(botonVolverVentanaListar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonEliminarVentanaListar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonModificarVentanaListar)))
+                        .addComponent(botonModificarVentanaListar))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -125,7 +126,7 @@ public class VentanaListar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonEliminarVentanaListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarVentanaListarActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_botonEliminarVentanaListarActionPerformed
 
     private void botonModificarVentanaListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarVentanaListarActionPerformed

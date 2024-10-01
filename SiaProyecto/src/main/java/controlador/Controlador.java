@@ -161,6 +161,8 @@ public class Controlador implements ActionListener{
             ventanaListar = new VentanaListar(menu.listaProductos());
             
             ventanaListar.getBotonVolverVentanaListar().addActionListener(this);
+            ventanaListar.getBotonEliminarVentanaListar().addActionListener(this);
+            ventanaListar.getBotonModificarVentanaListar().addActionListener(this);
             
             ventanaListar.setAlwaysOnTop(true);
             ventanaListar.setTitle("Listar Productos");
@@ -242,9 +244,13 @@ public class Controlador implements ActionListener{
             try{
                 menu.añadirProducto(producto1);
             }catch(CorridorException e){
-                JOptionPane.showMessageDialog(agregarProducto, "Pasillo ingresado no es valido.\nIngrese un pasillo existente", "Error al ingresar el producto", JOptionPane.ERROR_MESSAGE);
-                e.printStackTrace();
-                return;
+                int respuesta = JOptionPane.showConfirmDialog(agregarProducto, "Pasillo ingresado no valido.\n¿Desea crear un pasillo nuevo?", "Error al ingresar el producto", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if(respuesta == JOptionPane.YES_OPTION){
+                    System.out.println("AgregaPasillo");
+                }else{
+                    e.printStackTrace();
+                    return;
+                }
             }catch(Exception e){
                 JOptionPane.showMessageDialog(agregarProducto, "Error al añadir producto.\nIntente nuevamente.", "Error al ingresar el producto", JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
@@ -281,9 +287,21 @@ public class Controlador implements ActionListener{
             return; 
         }
         if(ventanaListar != null && ee.getSource() == ventanaListar.getBotonEliminarVentanaListar()){
+            DefaultTableModel model = (DefaultTableModel) (ventanaListar.getListTable()).getModel();
+            
+            if((ventanaListar.getListTable()).getSelectedRowCount() == 1){
+                model.removeRow((ventanaListar.getListTable()).getSelectedRow());
+            }else
+            {
+                if((ventanaListar.getListTable()).getSelectedRowCount() == 0)
+                    JOptionPane.showMessageDialog(ventanaListar, "Error, por favor seleccione solo una columna.", "Error al eliminar", JOptionPane.ERROR_MESSAGE);
+                else
+                    JOptionPane.showMessageDialog(ventanaListar, "Error, seleccione una columna.", "Error al eliminar", JOptionPane.ERROR_MESSAGE);
+            }
             return; 
         }        
         if(ventanaListar != null && ee.getSource() == ventanaListar.getBotonModificarVentanaListar()){
+            System.out.println("Modificando.");
             return; 
         }
     }
