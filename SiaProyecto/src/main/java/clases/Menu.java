@@ -112,12 +112,31 @@ public class Menu {
         System.out.println("Producto eliminado correctamente.");
        
     }
+        public void eliminarDatos(String categoria, String nombre){
+        
+        Pasillo pasillo1 = supermercado.buscarPasillo(categoria);
+
+        pasillo1.eliminarProducto(nombre);
+
+    }
     public void eliminarProducto(String nombre){
         ArrayList<Pasillo> pasillos = supermercado.obtenerPasillos();
         for(int i = 0; i < pasillos.size(); i++){
-            if(((Pasillo)pasillos.get(i)).buscarProducto(nombre) != null)
-                ((Pasillo)pasillos.get(i)).eliminarProducto(nombre);
+            Producto producto1 = ((Pasillo)pasillos.get(i)).buscarProducto(nombre);
+            if(producto1 != null){
+                supermercado.buscarPasillo(producto1.getCategoria()).eliminarProducto(nombre);
+            }
+                
         }
+    }
+    public boolean buscarProducto(String nombre){
+        ArrayList<Pasillo> pasillos = supermercado.obtenerPasillos();
+        for(int  i = 0; i < pasillos.size(); i++){
+            Producto producto1 = ((Pasillo)pasillos.get(i)).buscarProducto(nombre);
+            if(producto1 != null)
+                return true;
+        }
+        return false;
     }
     public void textoMenuAñadirDatos(){
         System.out.println("1. Agregar producto");

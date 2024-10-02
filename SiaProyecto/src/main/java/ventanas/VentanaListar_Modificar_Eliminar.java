@@ -13,12 +13,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author isica
  */
-public class VentanaListar extends javax.swing.JFrame {
+public class VentanaListar_Modificar_Eliminar extends javax.swing.JFrame {
 
     /**
      * Creates new form VentanaListar
      */
-    public VentanaListar(String datos) {
+    public VentanaListar_Modificar_Eliminar(String datos) {
         
         initComponents();
         
@@ -59,7 +59,7 @@ public class VentanaListar extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Nombre", "Categoiria", "Cantidad", "Precio"
+                "Codigo", "Nombre", "Categoria", "Cantidad", "Precio"
             }
         ) {
             boolean[] canEdit = new boolean [] {

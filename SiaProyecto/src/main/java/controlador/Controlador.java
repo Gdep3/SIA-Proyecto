@@ -8,7 +8,6 @@ import ventanas.*;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -21,7 +20,7 @@ public class Controlador implements ActionListener{
     private VentanaEmpleado menuEmpleado;
     private VentanaCliente menuCliente;
     private VentanaBuscar menuBuscar;
-    private VentanaListar ventanaListar;
+    private VentanaListar_Modificar_Eliminar ventanaListar;
     private VentanaAgregar menuAgregar;
     
     public void iniciar(){
@@ -92,7 +91,6 @@ public class Controlador implements ActionListener{
             menuEmpleado = new VentanaEmpleado();
             
             menuEmpleado.getBotonAgregar().addActionListener(this);
-            menuEmpleado.getBotonEliminar().addActionListener(this);
             menuEmpleado.getBotonListar().addActionListener(this);
             menuEmpleado.getBotonReporte().addActionListener(this);
             menuEmpleado.getBotonVolver().addActionListener(this);
@@ -126,7 +124,7 @@ public class Controlador implements ActionListener{
             return;
         }
         if(menuCliente != null && ee.getSource() == menuCliente.getBotonListar()){
-            ventanaListar = new VentanaListar(menu.listaProductos());
+            ventanaListar = new VentanaListar_Modificar_Eliminar(menu.listaProductos());
             
             ventanaListar.getBotonVolverVentanaListar().addActionListener(this);
             
@@ -155,11 +153,8 @@ public class Controlador implements ActionListener{
             menuAgregar.setVisible(true);
             return;
         }
-        if(menuEmpleado != null && ee.getSource() == menuEmpleado.getBotonEliminar()){
-            return;
-        }
         if(menuEmpleado != null && ee.getSource() == menuEmpleado.getBotonListar()){
-            ventanaListar = new VentanaListar(menu.listaProductos());
+            ventanaListar = new VentanaListar_Modificar_Eliminar(menu.listaProductos());
             
             ventanaListar.getBotonVolverVentanaListar().addActionListener(this);
             ventanaListar.getBotonEliminarVentanaListar().addActionListener(this);
@@ -265,9 +260,24 @@ public class Controlador implements ActionListener{
         }
         if(ventanaListar != null && ee.getSource() == ventanaListar.getBotonEliminarVentanaListar()){
             DefaultTableModel model = (DefaultTableModel) (ventanaListar.getListTable()).getModel();
-            
+
             if((ventanaListar.getListTable()).getSelectedRowCount() == 1){
-                model.removeRow((ventanaListar.getListTable()).getSelectedRow());
+                String nombre = (ventanaListar.getListTable()).getValueAt(ventanaListar.getListTable().getSelectedRow(), 1).toString().trim();
+                int respuesta = JOptionPane.showConfirmDialog(ventanaListar, "Esta seguro de que quiere eliminar este producto?\nEsta operacion es permanente.", "Eliminando producto", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                
+                if(respuesta == JOptionPane.YES_OPTION)
+                {
+                    model.removeRow((ventanaListar.getListTable()).getSelectedRow());
+                    menu.eliminarProducto(nombre);
+                }else
+                {
+                    JOptionPane.showMessageDialog(ventanaListar, "Producto no fue eliminado.", "Cancelando", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+                if(menu.buscarProducto(nombre) == false)
+                    JOptionPane.showMessageDialog(ventanaListar, "Producto eliminado correctamente.", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
+                else
+                    JOptionPane.showMessageDialog(ventanaListar,"Error, el producto no fue eliminado correctamente.", "Error al eliminar", JOptionPane.ERROR_MESSAGE);
             }else
             {
                 if((ventanaListar.getListTable()).getSelectedRowCount() == 0)
