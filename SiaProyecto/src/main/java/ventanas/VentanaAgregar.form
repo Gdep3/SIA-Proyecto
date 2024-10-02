@@ -23,52 +23,139 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="160" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="botonVolverMenuAgregar" max="32767" attributes="0"/>
-                  <Component id="botonAgregarProducto" max="32767" attributes="0"/>
-                  <Component id="botonAgregarPasillo" alignment="0" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace pref="160" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="botonVolverVentanaAgregarProducto" min="-2" pref="90" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="botonAceptarVentanaAgregarProducto" min="-2" pref="90" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
           </Group>
           <Component id="titulo" alignment="1" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="nombreTexto" min="-2" pref="110" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="campoNombre" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="codigoTexto" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
+                          <Component id="categoriaTexto" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="campoCodigo" max="32767" attributes="0"/>
+                          <Component id="campoCategoria" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="precioText" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
+                          <Component id="cantidadTexto" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="campoPrecio" max="32767" attributes="0"/>
+                          <Component id="campoCantidad" alignment="0" pref="237" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="89" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               <Component id="titulo" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="botonAgregarProducto" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="campoNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nombreTexto" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="botonAgregarPasillo" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="campoCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="codigoTexto" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="botonVolverMenuAgregar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="86" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="campoCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="categoriaTexto" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="campoPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="precioText" alignment="3" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="campoCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cantidadTexto" alignment="3" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="botonAceptarVentanaAgregarProducto" alignment="3" max="32767" attributes="0"/>
+                  <Component id="botonVolverVentanaAgregarProducto" alignment="3" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="botonAgregarProducto">
+    <Component class="javax.swing.JButton" name="botonAceptarVentanaAgregarProducto">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Agregar Producto"/>
+        <Property name="text" type="java.lang.String" value="Aceptar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAgregarProductoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAceptarVentanaAgregarProductoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="botonAgregarPasillo">
+    <Component class="javax.swing.JFormattedTextField" name="campoNombre">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Agregar Pasillo"/>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoNombreActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="campoCategoria">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="botonVolverMenuAgregar">
+    <Component class="javax.swing.JFormattedTextField" name="campoCodigo">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="campoPrecio">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoPrecioActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="campoCantidad">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoCantidadActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonVolverVentanaAgregarProducto">
       <Properties>
         <Property name="text" type="java.lang.String" value="Volver"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonVolverVentanaAgregarProductoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="titulo">
       <Properties>
@@ -76,7 +163,32 @@
           <Font name="Segoe UI Black" size="18" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Menu Agregar"/>
+        <Property name="text" type="java.lang.String" value="Ingresar Producto"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="nombreTexto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ingresar nombre:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="categoriaTexto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ingresar categoria:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="codigoTexto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ingresar codigo:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="cantidadTexto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ingresar cantidad:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="precioText">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ingresar precio:"/>
       </Properties>
     </Component>
   </SubComponents>

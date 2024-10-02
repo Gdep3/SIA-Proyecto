@@ -21,7 +21,6 @@ public class Controlador implements ActionListener{
     private VentanaEmpleado menuEmpleado;
     private VentanaCliente menuCliente;
     private VentanaBuscar menuBuscar;
-    private VentanaAgregarProducto agregarProducto;
     private VentanaListar ventanaListar;
     private VentanaAgregar menuAgregar;
     
@@ -146,9 +145,8 @@ public class Controlador implements ActionListener{
         if(menuEmpleado != null && ee.getSource() == menuEmpleado.getBotonAgregar()){
             menuAgregar = new VentanaAgregar();
             
-            menuAgregar.getBotonAgregarPasillo().addActionListener(this);
-            menuAgregar.getBotonAgregarProducto().addActionListener(this);
-            menuAgregar.getBotonVolverMenuAgregar().addActionListener(this);
+            menuAgregar.getBotonVolverVentanaAgregarProducto().addActionListener(this);
+            menuAgregar.getBotonAceptarVentanaAgregarProducto().addActionListener(this);
             
             menuAgregar.setAlwaysOnTop(true);
             menuAgregar.setTitle("Menu Agregar");
@@ -182,102 +180,81 @@ public class Controlador implements ActionListener{
             return;
         }
         //Acciones menu agregar producto.
-        if(agregarProducto != null && ee.getSource() == agregarProducto.getBotonAceptarVentanaAgregarProducto()){
+        if(menuAgregar != null && ee.getSource() == menuAgregar.getBotonAceptarVentanaAgregarProducto()){
             Producto producto1 = new Producto();
            
             //Agregar nombre a producto nuevo.
             try{
-               producto1.setNombre(agregarProducto.getCampoNombre().getText());
+               producto1.setNombre(menuAgregar.getCampoNombre().getText());
             }catch(NameException e){
-                JOptionPane.showMessageDialog(agregarProducto, "Campo en blanco.\nPor favor ingresar un nombre.", "Error al ingresar el nombre", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(menuAgregar, "Campo en blanco.\nPor favor ingresar un nombre.", "Error al ingresar el nombre", JOptionPane.ERROR_MESSAGE);
                 return;
             }catch(Exception e){
-               JOptionPane.showMessageDialog(agregarProducto, "Nombre Invalido.\nPor favor ingresar un nombre valido,", "Error al ingresar el nombre", JOptionPane.ERROR_MESSAGE);
+               JOptionPane.showMessageDialog(menuAgregar, "Nombre Invalido.\nPor favor ingresar un nombre valido,", "Error al ingresar el nombre", JOptionPane.ERROR_MESSAGE);
                return;
             }
             //Agregar codigo a producto nuevo.
             try{
-                producto1.setCodigo(agregarProducto.getCampoCodigo().getText());
+                producto1.setCodigo(menuAgregar.getCampoCodigo().getText());
             }catch(CodeException e){
-                JOptionPane.showMessageDialog(agregarProducto, "Codigo Invalido.\nDebe contener 12 caracteres", "Error al ingresar el codigo", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(menuAgregar, "Codigo Invalido.\nDebe contener 12 caracteres", "Error al ingresar el codigo", JOptionPane.ERROR_MESSAGE);
                 return;
             }catch(Exception e){
-                JOptionPane.showMessageDialog(agregarProducto, "Error al ingresar el codigo.\nIntente nuevamente.", "Error al ingresar el codigo", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(menuAgregar, "Error al ingresar el codigo.\nIntente nuevamente.", "Error al ingresar el codigo", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             //Agregar categoria a producto nuevo.
             try{
-                producto1.setCategoria(agregarProducto.getCampoCategoria().getText());                
-                System.out.println(agregarProducto.getCampoCategoria().getText());
+                producto1.setCategoria(menuAgregar.getCampoCategoria().getText());                
+                System.out.println(menuAgregar.getCampoCategoria().getText());
             }catch(CategoryException e){
-                JOptionPane.showMessageDialog(agregarProducto, "Campo en blanco.\nPor favor ingresar una categoria.", "Error al ingresar la categoria", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(menuAgregar, "Campo en blanco.\nPor favor ingresar una categoria.", "Error al ingresar la categoria", JOptionPane.ERROR_MESSAGE);
                 return;
             }catch(Exception e){
-                JOptionPane.showMessageDialog(agregarProducto, "Error al ingresar la categoria.\nIntente nuevamente.", "Error al ingresar la categoria", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(menuAgregar, "Error al ingresar la categoria.\nIntente nuevamente.", "Error al ingresar la categoria", JOptionPane.ERROR_MESSAGE);
                return;
             }
             //Agregar precio a producto nuevo.
             try{
-                producto1.setPrecio(Double.parseDouble(agregarProducto.getCampoPrecio().getText()));
+                producto1.setPrecio(Double.parseDouble(menuAgregar.getCampoPrecio().getText()));
             }catch(NumberException e){
-                JOptionPane.showMessageDialog(agregarProducto, "Precio invalido.\nIngrese un número entero positivo.", "Error al ingresar el precio", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(menuAgregar, "Precio invalido.\nIngrese un número entero positivo.", "Error al ingresar el precio", JOptionPane.ERROR_MESSAGE);
                 return;
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(agregarProducto, "Error al ingresa el precio.\nIntente nuevamente.", "Error al ingresar el precio", JOptionPane.ERROR_MESSAGE);
+            }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(menuAgregar, "Error al ingresa el precio.\nIntente nuevamente.", "Error al ingresar el precio", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             //Agregar cantidad a producto nuevo.
             try{
-                producto1.setCantidad(Integer.parseInt(agregarProducto.getCampoCantidad().getText()));
+                producto1.setCantidad(Integer.parseInt(menuAgregar.getCampoCantidad().getText()));
             }catch(NumberException e){
-                JOptionPane.showMessageDialog(agregarProducto, "Cantidad invalida.\nIngrese un número entero positivo.", "Error al ingresar la cantidad", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(menuAgregar, "Cantidad invalida.\nIngrese un número entero positivo.", "Error al ingresar la cantidad", JOptionPane.ERROR_MESSAGE);
                 return;
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(agregarProducto, "Error al ingresa la cantidad.\nIntente nuevamente.", "Error al ingresar la cantidad", JOptionPane.ERROR_MESSAGE);
+            }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(menuAgregar, "Error al ingresa la cantidad.\nIntente nuevamente.", "Error al ingresar la cantidad", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             //Agregar pasillo nuevo, si el usuario asi lo quiere.
-            if(supermercado.buscarPasillo(agregarProducto.getCampoCategoria().getText()) == null){
-                int respuesta = JOptionPane.showConfirmDialog(agregarProducto, "Pasillo ingresado no valido.\n¿Desea crear un pasillo nuevo?", "Error al ingresar el producto", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if(supermercado.buscarPasillo(menuAgregar.getCampoCategoria().getText()) == null){
+                int respuesta = JOptionPane.showConfirmDialog(menuAgregar, "Pasillo ingresado no valido.\n¿Desea crear un pasillo nuevo?", "Error al ingresar el producto", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if(respuesta == JOptionPane.YES_OPTION)
-                    supermercado.agregarPasillo(agregarProducto.getCampoCategoria().getText());
+                    supermercado.agregarPasillo(menuAgregar.getCampoCategoria().getText());
             }
             //Agregar producto a un pasillo.       
             try{
                 menu.añadirProducto(producto1);
             }catch(CorridorException e){
-                JOptionPane.showMessageDialog(agregarProducto, "Pasillo ingresado no valido.\nPor favor ingrese un pasillo valido.", "Error al ingresar el producto", JOptionPane.ERROR_MESSAGE);
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(menuAgregar, "Pasillo ingresado no valido.\nPor favor ingrese un pasillo valido.", "Error al ingresar el producto", JOptionPane.ERROR_MESSAGE);
                 return;
             }catch(Exception e){
-                JOptionPane.showMessageDialog(agregarProducto, "Error al añadir producto.\nIntente nuevamente.", "Error al ingresar el producto", JOptionPane.ERROR_MESSAGE);
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(menuAgregar, "Error al añadir producto.\nIntente nuevamente.", "Error al ingresar el producto", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             //Cerrar ventana.
-            agregarProducto.dispose();
+            menuAgregar.dispose();
             return;
         }
-        if(agregarProducto != null && ee.getSource() == agregarProducto.getBotonVolverVentanaAgregarProducto()){
-            agregarProducto.dispose();
-            return;
-        }
-        if(menuAgregar != null && ee.getSource() == menuAgregar.getBotonAgregarProducto()){
-            agregarProducto = new VentanaAgregarProducto();
-            
-            agregarProducto.getBotonAceptarVentanaAgregarProducto().addActionListener(this);
-            agregarProducto.getBotonVolverVentanaAgregarProducto().addActionListener(this);
-            
-            agregarProducto.setAlwaysOnTop(true);
-            agregarProducto.setTitle("Agregar Producto");
-            agregarProducto.setLocationRelativeTo(null);
-            agregarProducto.setResizable(false);
-            agregarProducto.setVisible(true);
-        }
-        if(menuAgregar != null && ee.getSource() == menuAgregar.getBotonAgregarPasillo()){
-            return;
-        }
-        if(menuAgregar != null && ee.getSource() == menuAgregar.getBotonVolverMenuAgregar()){
+        if(menuAgregar != null && ee.getSource() == menuAgregar.getBotonVolverVentanaAgregarProducto()){
             menuAgregar.dispose();
             return;
         }
