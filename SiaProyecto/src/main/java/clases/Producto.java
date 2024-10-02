@@ -49,7 +49,7 @@ public class Producto {
             throw new CodeException("Largo del codigo no valido.");
     }
     public void setCategoria(String categoria) throws CategoryException{
-        if(categoria != null)
+        if(categoria != null && !categoria.isEmpty())
             this.categoria = categoria;
         else
             throw new CategoryException("Categoria no valida.");
