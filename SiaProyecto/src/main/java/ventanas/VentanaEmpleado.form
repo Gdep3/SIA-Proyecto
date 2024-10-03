@@ -28,7 +28,7 @@
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="botonAgregar" max="32767" attributes="0"/>
                   <Component id="botonReporte" alignment="1" max="32767" attributes="0"/>
-                  <Component id="botonListar" alignment="0" max="32767" attributes="0"/>
+                  <Component id="botonListar_Modificar_Eliminar" alignment="0" max="32767" attributes="0"/>
                   <Component id="botonVolverMenuEmpleado" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -44,7 +44,7 @@
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="botonAgregar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="botonListar" min="-2" max="-2" attributes="0"/>
+              <Component id="botonListar_Modificar_Eliminar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="botonReporte" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -68,12 +68,12 @@
         <Property name="text" type="java.lang.String" value="Generar Reporte"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="botonListar">
+    <Component class="javax.swing.JButton" name="botonListar_Modificar_Eliminar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Listar/Eliminar/Modificar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonListarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonListar_Modificar_EliminarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="titulo">
