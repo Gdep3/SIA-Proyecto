@@ -63,41 +63,41 @@ public class Pasillo {
         else
             System.out.println("No se encuentra ese producto.");
     }*/
-    public void cambiarNombre(Producto producto, String nombre) throws NameException{
+    public boolean cambiarNombre(Producto producto, String nombre) throws NameException{
         if(productosPasillo.contains(producto)){
            int index = productosPasillo.indexOf(producto);
-           
             productosPasillo.get(index).setNombre(nombre);
+            return true;
         }
         else
-            System.out.println("No se encuentra ese producto.");
+            return false;
     }
-    public void cambiarCategoria(Producto producto, String categoria) throws CategoryException{
+    public boolean cambiarCategoria(Producto producto, String categoria) throws CategoryException{
         if(productosPasillo.contains(producto)){
            int index = productosPasillo.indexOf(producto);
-           
             productosPasillo.get(index).setCategoria(categoria);  
+            return true;
         }
         else
-            System.out.println("No se encuentra ese producto.");
+            return false;
     }
-    public void cambiarPrecio(Producto producto, String precio) throws NumberException{
+    public boolean cambiarPrecio(Producto producto, String precio) throws NumberException{
         if(productosPasillo.contains(producto)){
            int index = productosPasillo.indexOf(producto);
-            
             productosPasillo.get(index).setPrecio(Double.parseDouble(precio));
+            return true;
         }
         else
-            System.out.println("No se encuentra ese producto.");
+            return false;
     }
-    public void cambiarCantidad(Producto producto, String cantidad) throws NumberException{
+    public boolean cambiarCantidad(Producto producto, String cantidad) throws NumberException{
         if(productosPasillo.contains(producto)){
             int index = productosPasillo.indexOf(producto);
-            
             productosPasillo.get(index).setCantidad(Integer.parseInt(cantidad));
+            return true;
         }
         else
-            System.out.println("No se encuentra ese producto.");
+            return false;
     }
     public Producto buscarProducto(String nombre){
         for(int i = 0; i < productosPasillo.size(); i++){
@@ -120,19 +120,18 @@ public class Pasillo {
         } 
         return false;  
     }
-    //Tal vez no se utilize.
-   /* public boolean eliminarProducto(Producto producto1){
+    public boolean eliminarProducto(Producto producto1){
         for(int i = 0; i < productosPasillo.size(); i++){
             Producto producto = productosPasillo.get(i);
-            if(producto.equals(producto1)
+            if(producto.equals(producto1))
             {
-                stockPasillo -= producto.getStock();
+                stockPasillo -= producto.getCantidad();
                 productosPasillo.remove(i);
                 return true;
             }
         }
         return false;
-    }*/
+    }
     public void listarProductos(){
         for(int i = 0; i < productosPasillo.size(); i++){
             Producto producto = productosPasillo.get(i);

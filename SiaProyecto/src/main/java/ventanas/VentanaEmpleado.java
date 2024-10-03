@@ -91,7 +91,7 @@ public class VentanaEmpleado extends javax.swing.JFrame {
                 .addComponent(botonReporte)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonVolverMenuEmpleado)
-                .addGap(41, 41, 41))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();

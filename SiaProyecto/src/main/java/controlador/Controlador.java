@@ -42,10 +42,10 @@ public class Controlador implements ActionListener{
         supermercado.agregarPasillo(pasillo1);
 
         pasillo1 = new Pasillo("Congelados");
-        pasillo1.agregarProducto("Calamar", "376216680309", "Congelador", 1200, 12);
-        pasillo1.agregarProducto("Nuggets de pollo", "237924710845", "Congelador", 500, 30);
-        pasillo1.agregarProducto("Reineta", "557377550295", "Congelador", 2000, 25);
-        pasillo1.agregarProducto("Chuleta de cerdo", "294327564746", "Congelador", 2500, 40);
+        pasillo1.agregarProducto("Calamar", "376216680309", "Congelados", 1200, 12);
+        pasillo1.agregarProducto("Nuggets de pollo", "237924710845", "Congelados", 500, 30);
+        pasillo1.agregarProducto("Reineta", "557377550295", "Congelados", 2000, 25);
+        pasillo1.agregarProducto("Chuleta de cerdo", "294327564746", "Congelados", 2500, 40);
         supermercado.agregarPasillo(pasillo1);
 
         pasillo1 = new Pasillo("Cuidado personal");
@@ -64,8 +64,9 @@ public class Controlador implements ActionListener{
         
         menuMain.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         menuMain.setTitle("Menu Inicio");
-        menuMain.setLocationRelativeTo(null);
+        menuMain.setSize(500, 400);
         menuMain.setResizable(false);
+        menuMain.setLocationRelativeTo(null);
         menuMain.setVisible(true);
     }
     //Se deberian hacer dos controladores para las opciones de menu cliente y otro para de empleado.
@@ -74,16 +75,14 @@ public class Controlador implements ActionListener{
         //Acciones menu principal.
         if(ee.getSource() == menuMain.getBotonCliente()){
             menuCliente = new VentanaCliente();
-            
-            menuCliente.getBotonListar().addActionListener(this);
-            menuCliente.getBotonBuscar().addActionListener(this);
-            menuCliente.getBotonComprar().addActionListener(this);
+
             menuCliente.getBotonVolver().addActionListener(this);
             
             menuCliente.setAlwaysOnTop(true);
             menuCliente.setTitle("Menu Cliente");
-            menuCliente.setLocationRelativeTo(null);
+            menuCliente.setSize(500, 400);
             menuCliente.setResizable(false);
+            menuCliente.setLocationRelativeTo(null);
             menuCliente.setVisible(true);
             return;
         }
@@ -97,44 +96,13 @@ public class Controlador implements ActionListener{
             
             menuEmpleado.setAlwaysOnTop(true);
             menuEmpleado.setTitle("Menu Empleado");
-            menuEmpleado.setLocationRelativeTo(null);
+            menuEmpleado.setSize(500, 400);
             menuEmpleado.setResizable(false);
+            menuEmpleado.setLocationRelativeTo(null);
             menuEmpleado.setVisible(true);
             return;
         }
         //Acciones menu cliente.
-        if(menuCliente != null && ee.getSource() == menuCliente.getBotonBuscar()){
-            menuBuscar = new VentanaBuscar();
-            
-            menuBuscar.getBotonBuscarCategoria().addActionListener(this);
-            menuBuscar.getBotonBuscarNombre().addActionListener(this);
-            menuBuscar.getBotonBuscarPrecio().addActionListener(this);
-            menuBuscar.getBotonBuscarOfertas().addActionListener(this);
-            menuBuscar.getBotonBuscarCodigo().addActionListener(this);
-            menuBuscar.getBotonVolverMenuBuscar().addActionListener(this);
-            
-            menuBuscar.setAlwaysOnTop(true);
-            menuBuscar.setTitle("Menu Busqueda");
-            menuBuscar.setLocationRelativeTo(null);
-            menuBuscar.setResizable(false);
-            menuBuscar.setVisible(true);
-            return;
-        }
-        if(menuCliente != null && ee.getSource() == menuCliente.getBotonComprar()){
-            return;
-        }
-        if(menuCliente != null && ee.getSource() == menuCliente.getBotonListar()){
-            ventanaListar = new VentanaListar_Modificar_Eliminar(menu.listaProductos());
-            
-            ventanaListar.getBotonVolverVentanaListar().addActionListener(this);
-            
-            ventanaListar.setAlwaysOnTop(true);
-            ventanaListar.setTitle("Listar Productos");
-            ventanaListar.setLocationRelativeTo(null);
-            ventanaListar.setResizable(false);
-            ventanaListar.setVisible(true);
-            return;
-        }
         if(menuCliente != null && ee.getSource() == menuCliente.getBotonVolver()){
             menuCliente.dispose();
             return;
@@ -148,8 +116,9 @@ public class Controlador implements ActionListener{
             
             menuAgregar.setAlwaysOnTop(true);
             menuAgregar.setTitle("Menu Agregar");
-            menuAgregar.setLocationRelativeTo(null);
+            menuAgregar.setSize(500, 400);
             menuAgregar.setResizable(false);
+            menuAgregar.setLocationRelativeTo(null);
             menuAgregar.setVisible(true);
             return;
         }
@@ -162,8 +131,9 @@ public class Controlador implements ActionListener{
             
             ventanaListar.setAlwaysOnTop(true);
             ventanaListar.setTitle("Listar Productos");
-            ventanaListar.setLocationRelativeTo(null);
+            ventanaListar.setSize(500, 400);
             ventanaListar.setResizable(false);
+            ventanaListar.setLocationRelativeTo(null);
             ventanaListar.setVisible(true);
             return;
         }
@@ -262,33 +232,149 @@ public class Controlador implements ActionListener{
             DefaultTableModel model = (DefaultTableModel) (ventanaListar.getListTable()).getModel();
 
             if((ventanaListar.getListTable()).getSelectedRowCount() == 1){
+                //Se obtiene el nombre del producto en esa columna.
                 String nombre = (ventanaListar.getListTable()).getValueAt(ventanaListar.getListTable().getSelectedRow(), 1).toString().trim();
+                //Se muestra una ventana preguntando si el usuario de verdad quiere eliminar ese producto.
                 int respuesta = JOptionPane.showConfirmDialog(ventanaListar, "Esta seguro de que quiere eliminar este producto?\nEsta operacion es permanente.", "Eliminando producto", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-                
+                //Se comprueba que esta sea igual a si
                 if(respuesta == JOptionPane.YES_OPTION)
                 {
+                    //Se elimina de la tabla.
                     model.removeRow((ventanaListar.getListTable()).getSelectedRow());
+                    //Se elimina del supermercado.
                     menu.eliminarProducto(nombre);
                 }else
                 {
+                    //Mensaje de que no se elimino el producto.
                     JOptionPane.showMessageDialog(ventanaListar, "Producto no fue eliminado.", "Cancelando", JOptionPane.INFORMATION_MESSAGE);
                     return;
                 }
+                //Se revisa que se haya eliminado del supermercado.
                 if(menu.buscarProducto(nombre) == false)
+                    //Mensaje de que se elimino correctamente.
                     JOptionPane.showMessageDialog(ventanaListar, "Producto eliminado correctamente.", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
                 else
+                    //Mesansaje de que no se pudo concretar la eliminacion del producto.
                     JOptionPane.showMessageDialog(ventanaListar,"Error, el producto no fue eliminado correctamente.", "Error al eliminar", JOptionPane.ERROR_MESSAGE);
             }else
             {
+                //Si el usuario no tiene seleccionada ninguna columna.
                 if((ventanaListar.getListTable()).getSelectedRowCount() == 0)
                     JOptionPane.showMessageDialog(ventanaListar, "Error, por favor seleccione solo una columna.", "Error al eliminar", JOptionPane.ERROR_MESSAGE);
+                //Si tiene seleccionada más de una columna.
                 else
                     JOptionPane.showMessageDialog(ventanaListar, "Error, seleccione una columna.", "Error al eliminar", JOptionPane.ERROR_MESSAGE);
             }
             return; 
         }        
         if(ventanaListar != null && ee.getSource() == ventanaListar.getBotonModificarVentanaListar()){
-            System.out.println("Modificando.");
+            DefaultTableModel model = (DefaultTableModel) (ventanaListar.getListTable()).getModel();
+            
+            if((ventanaListar.getListTable()).getSelectedRowCount() == 1){
+                String categoria = (ventanaListar.getListTable()).getValueAt(ventanaListar.getListTable().getSelectedRow(), 2).toString().trim();
+            
+                String[] opciones = {"Nombre", "Categoria", "Precio", "Cantidad", "Todos"};
+                String opcion = JOptionPane.showInputDialog(ventanaListar, "Qué desea cambiar?", "Opciones cambiar",JOptionPane.INFORMATION_MESSAGE, null , opciones, "").toString();
+
+                if(opcion.equalsIgnoreCase("Nombre")){
+                    String nuevoNombre = JOptionPane.showInputDialog(ventanaListar,"Ingrese el nuevo nombre", "Cambio de nombre", JOptionPane.INFORMATION_MESSAGE);
+                    Pasillo pasillo1 = supermercado.buscarPasillo(categoria);
+                    try{
+                        Producto producto1 = pasillo1.buscarProducto((ventanaListar.getListTable()).getValueAt(ventanaListar.getListTable().getSelectedRow(), 1).toString().trim());
+                        pasillo1.cambiarNombre(producto1, nuevoNombre);
+                        
+                        ventanaListar.getListTable().setValueAt(nuevoNombre,ventanaListar.getListTable().getSelectedRow(), 1);
+                    }catch(NameException e){
+                        JOptionPane.showMessageDialog(ventanaListar, "Nombre invalido.\nIngrese nuevamente.", "Error nombre", JOptionPane.ERROR_MESSAGE);
+                    }
+                    
+                }else if(opcion.equalsIgnoreCase("Categoria")){
+                    String nuevaCategoria = JOptionPane.showInputDialog(ventanaListar, "Ingrese la nueva categoria", "Cambio categoria", JOptionPane.INFORMATION_MESSAGE).trim();
+                    Pasillo pasillo1 = supermercado.buscarPasillo(categoria);
+                    try{
+                        System.out.println(nuevaCategoria);
+                        if(supermercado.buscarPasillo(nuevaCategoria) != null)
+                        {
+                            Producto producto1 = pasillo1.buscarProducto((ventanaListar.getListTable()).getValueAt(ventanaListar.getListTable().getSelectedRow(), 1).toString().trim());
+                            pasillo1.cambiarCategoria(producto1, nuevaCategoria);
+                        }else{
+                            int respuesta = JOptionPane.showConfirmDialog(ventanaListar, "Pasillo ingresado no valido.\n¿Desea crear un pasillo nuevo?", "Error al ingresar categoria", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                             if(respuesta == JOptionPane.YES_OPTION){
+                                Producto producto1 = pasillo1.buscarProducto((ventanaListar.getListTable()).getValueAt(ventanaListar.getListTable().getSelectedRow(), 1).toString().trim()); 
+                                menu.eliminarProducto(producto1.getNombre());
+                                supermercado.agregarPasillo(nuevaCategoria);
+                                producto1.setCategoria(nuevaCategoria);
+                                supermercado.buscarPasillo(nuevaCategoria).agregarProducto(producto1);
+                             }
+                        }
+                        ventanaListar.getListTable().setValueAt(nuevaCategoria,ventanaListar.getListTable().getSelectedRow(), 2);
+                    }catch(CategoryException e){
+                        JOptionPane.showMessageDialog(ventanaListar, "Categoria invalida.\nIngrese nuevamente.", "Error categoria", JOptionPane.ERROR_MESSAGE);
+                    }
+                }else if(opcion.equalsIgnoreCase("Precio")){
+                    String nuevoPrecio = JOptionPane.showInputDialog(ventanaListar, "Ingrese nuevo precio", "Cambio precio", JOptionPane.INFORMATION_MESSAGE);
+                    Pasillo pasillo1 = supermercado.buscarPasillo(categoria);
+                    try{
+                        Producto producto1 = pasillo1.buscarProducto((ventanaListar.getListTable()).getValueAt(ventanaListar.getListTable().getSelectedRow(), 1).toString().trim());
+                        pasillo1.cambiarPrecio(producto1, nuevoPrecio);
+                        
+                        ventanaListar.getListTable().setValueAt(nuevoPrecio,ventanaListar.getListTable().getSelectedRow(), 4); 
+                    }catch(NumberException e){
+                        JOptionPane.showMessageDialog(ventanaListar, "Precio invalido.\nIngrese nuevamente.", "Error Precio", JOptionPane.ERROR_MESSAGE);
+                    }
+                }else if(opcion.equalsIgnoreCase("Cantidad")){
+                    String nuevaCantidad = JOptionPane.showInputDialog(ventanaListar, "Ingrese nueva cantidad", "Cambio cantidad", JOptionPane.INFORMATION_MESSAGE);
+                    Pasillo pasillo1 = supermercado.buscarPasillo(categoria);
+                    try{
+                        Producto producto1 = pasillo1.buscarProducto((ventanaListar.getListTable()).getValueAt(ventanaListar.getListTable().getSelectedRow(), 1).toString().trim());
+                        pasillo1.cambiarCantidad(producto1, nuevaCantidad);
+                        
+                        ventanaListar.getListTable().setValueAt(nuevaCantidad,ventanaListar.getListTable().getSelectedRow(), 3);
+                    }catch(NumberException e){
+                        JOptionPane.showMessageDialog(ventanaListar, "Cantidad invalida.\nIngrese nuevamente.", "Error Cantidad", JOptionPane.ERROR_MESSAGE);
+                    }
+                }else{
+                    String nuevoNombre = JOptionPane.showInputDialog(ventanaListar,"Ingrese el nuevo nombre", "Cambio de nombre", JOptionPane.INFORMATION_MESSAGE);
+                    String nuevaCategoria = JOptionPane.showInputDialog(ventanaListar, "Ingrese la nueva categoria", "Cambio categoria", JOptionPane.INFORMATION_MESSAGE);
+                    String nuevoPrecio = JOptionPane.showInputDialog(ventanaListar, "Ingrese nuevo precio", "Cambio precio", JOptionPane.INFORMATION_MESSAGE);
+                    String nuevaCantidad = JOptionPane.showInputDialog(ventanaListar, "Ingrese nueva cantidad", "Cambio cantidad", JOptionPane.INFORMATION_MESSAGE);
+                
+                    Pasillo pasillo1 = supermercado.buscarPasillo(categoria);
+                    try{
+                        Producto producto1 = pasillo1.buscarProducto((ventanaListar.getListTable()).getValueAt(ventanaListar.getListTable().getSelectedRow(), 1).toString().trim());
+                        pasillo1.cambiarNombre(producto1, nuevoNombre);
+                        try{
+                        //!!!!!Se debe cambiar el pasillo al que pertenece el producto!!!!!
+                        System.out.println(nuevaCategoria);
+                        if(supermercado.buscarPasillo(nuevaCategoria) != null)
+                        {
+                            pasillo1.cambiarCategoria(producto1, nuevaCategoria);
+                        }else{
+                            int respuesta = JOptionPane.showConfirmDialog(ventanaListar, "Pasillo ingresado no valido.\n¿Desea crear un pasillo nuevo?", "Error al ingresar categoria", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                             if(respuesta == JOptionPane.YES_OPTION){
+                                menu.eliminarProducto(producto1.getNombre());
+                                supermercado.agregarPasillo(nuevaCategoria);
+                                producto1.setCategoria(nuevaCategoria);
+                                supermercado.buscarPasillo(nuevaCategoria).agregarProducto(producto1);
+                             }
+                        }
+                        ventanaListar.getListTable().setValueAt(nuevaCategoria,ventanaListar.getListTable().getSelectedRow(), 2);
+                        pasillo1.cambiarPrecio(producto1, nuevoPrecio);
+                        pasillo1.cambiarCantidad(producto1, nuevaCantidad);  
+                        }catch(CategoryException e){
+                            JOptionPane.showMessageDialog(ventanaListar, "Categoria invalida.\nIngrese nuevamente.", "Error categoria", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }catch(NameException e){
+                        JOptionPane.showMessageDialog(ventanaListar, "Nombre invalido.\nIngrese nuevamente.", "Error nombre", JOptionPane.ERROR_MESSAGE);
+                    }catch(NumberException e){
+                        JOptionPane.showMessageDialog(ventanaListar, "Precio/Cantidad invalido/a.\nIngrese nuevamente.", "Error Precio/Cantidad", JOptionPane.ERROR_MESSAGE);
+                    }
+                    ventanaListar.getListTable().setValueAt(nuevoNombre,ventanaListar.getListTable().getSelectedRow(), 1);
+                    ventanaListar.getListTable().setValueAt(nuevaCategoria,ventanaListar.getListTable().getSelectedRow(), 2);
+                    ventanaListar.getListTable().setValueAt(nuevoPrecio,ventanaListar.getListTable().getSelectedRow(), 4);
+                    ventanaListar.getListTable().setValueAt(nuevaCantidad,ventanaListar.getListTable().getSelectedRow(), 3);
+                }
+            }
             return; 
         }
     }

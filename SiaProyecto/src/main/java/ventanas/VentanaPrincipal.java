@@ -68,7 +68,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addContainerGap(67, Short.MAX_VALUE)
                 .addComponent(titulo)
                 .addGap(18, 18, 18)
                 .addComponent(subtitulo)

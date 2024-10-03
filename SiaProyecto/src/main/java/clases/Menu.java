@@ -125,8 +125,7 @@ public class Menu {
             Producto producto1 = ((Pasillo)pasillos.get(i)).buscarProducto(nombre);
             if(producto1 != null){
                 supermercado.buscarPasillo(producto1.getCategoria()).eliminarProducto(nombre);
-            }
-                
+            }   
         }
     }
     public boolean buscarProducto(String nombre){
