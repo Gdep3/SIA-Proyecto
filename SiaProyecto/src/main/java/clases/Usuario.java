@@ -4,7 +4,7 @@ package clases;
 import excepciones.RutException;
 
 
-public abstract class Usuario{
+public class Usuario{
     private String nombre;
     private String rut;
     
@@ -12,7 +12,9 @@ public abstract class Usuario{
         this.nombre = nombre;
         this.rut = rut;
     }
-    public abstract void  mostrarMenu();
+    public void  mostrarMenu() {
+        System.out.println("Menú Principal");
+    }
     
     public void setNombre(String nombre){
         this.nombre = nombre;
