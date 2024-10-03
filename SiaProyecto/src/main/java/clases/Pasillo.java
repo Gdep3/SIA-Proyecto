@@ -1,37 +1,47 @@
+package clases;
+
+import excepciones.NameException;
+import excepciones.NumberException;
+import excepciones.CategoryException;
 import java.util.ArrayList;
 import java.io.*;
 
 public class Pasillo {
-    int stockPasillo;
+    private int stockPasillo;
     private String categoriaPasillo;
     
     private ArrayList<Producto> productosPasillo;
 
+    public Pasillo(ArrayList<Producto> totalProductos, String categoriaPasillo, int stockPasillo) {
+        this.categoriaPasillo = categoriaPasillo;
+        this.stockPasillo = stockPasillo;
+        
+        this.productosPasillo = new ArrayList();
+        this.productosPasillo.addAll(totalProductos);
+    }
     public Pasillo(ArrayList<Producto> totalProductos, String categoriaPasillo) {
-
         this.categoriaPasillo = categoriaPasillo;
         
         this.productosPasillo = new ArrayList();
         this.productosPasillo.addAll(totalProductos);
     }
-    public Pasillo(String categoriaPasillo)
-    {
+    public Pasillo(String categoriaPasillo){
         this.categoriaPasillo = categoriaPasillo;
         this.productosPasillo = new ArrayList();    
     }
-    public Pasillo()
-    {
+    public Pasillo(){
         this.productosPasillo = new ArrayList();    
     }
 
     //Metodos.
-    public void agregarProducto(Producto producto){
+    public boolean agregarProducto(Producto producto){
         if(productosPasillo.contains(producto)){
             System.out.println("El producto ya se encuentra en la lista.");
-            return;
+            return false;
         }
         stockPasillo += producto.getCantidad();
         productosPasillo.add(producto);
+        return true;
     }
     public void agregarProducto(String nombre, String codigo, String categoria, double precio, int cantidad){
         Producto producto = new Producto(nombre, codigo, categoria, precio, cantidad);
@@ -43,21 +53,17 @@ public class Pasillo {
         stockPasillo += cantidad;
         productosPasillo.add(producto);
     }
-    public void cambiarAtributosProducto(Producto producto, String nombre, String codigo, String categoria, String precio, String cantidad){
+    /*public void cambiarAtributosProducto(Producto producto, String nombre, String codigo, String categoria, String precio, String cantidad) throws NameException {
         int index = productosPasillo.indexOf(producto);
         Producto productoPasillo = productosPasillo.get(index);
         
         if(productoPasillo != null){
-            productoPasillo.setNombre(nombre);
-            
-            productoPasillo.setCategoria(codigo);  
-            
-            productoPasillo.setPrecio(Double.parseDouble(precio));
+            cambiarNombre(productoPasillo, nombre)
         }
         else
             System.out.println("No se encuentra ese producto.");
-    }
-    public void cambiarNombre(Producto producto, String nombre){
+    }*/
+    public void cambiarNombre(Producto producto, String nombre) throws NameException{
         if(productosPasillo.contains(producto)){
            int index = productosPasillo.indexOf(producto);
            
@@ -66,7 +72,7 @@ public class Pasillo {
         else
             System.out.println("No se encuentra ese producto.");
     }
-    public void cambiarCategoria(Producto producto, String categoria){
+    public void cambiarCategoria(Producto producto, String categoria) throws CategoryException{
         if(productosPasillo.contains(producto)){
            int index = productosPasillo.indexOf(producto);
            
@@ -75,7 +81,7 @@ public class Pasillo {
         else
             System.out.println("No se encuentra ese producto.");
     }
-    public void cambiarPrecio(Producto producto, String precio){
+    public void cambiarPrecio(Producto producto, String precio) throws NumberException{
         if(productosPasillo.contains(producto)){
            int index = productosPasillo.indexOf(producto);
             
@@ -84,7 +90,7 @@ public class Pasillo {
         else
             System.out.println("No se encuentra ese producto.");
     }
-    public void cambiarCantidad(Producto producto, String cantidad){
+    public void cambiarCantidad(Producto producto, String cantidad) throws NumberException{
         if(productosPasillo.contains(producto)){
             int index = productosPasillo.indexOf(producto);
             
@@ -93,35 +99,64 @@ public class Pasillo {
         else
             System.out.println("No se encuentra ese producto.");
     }
-    public void eliminarProducto(int index){
-        Producto producto1 = productosPasillo.get(index);
-     
-        if(productosPasillo.contains(producto1))
-            productosPasillo.remove(producto1);
-        else
-            System.out.println("Producto no encontrado.");
+    public Producto buscarProducto(String nombre){
+        for(int i = 0; i < productosPasillo.size(); i++){
+            Producto producto = productosPasillo.get(i);
+            if(producto.getNombre().equalsIgnoreCase(nombre))
+                return producto;
+        }
+        return null;
     }
-    public void eliminarProducto(Producto producto1){
-        if(productosPasillo.contains(producto1))
-            productosPasillo.remove(producto1);
-        else
-            System.out.println("Producto no encontrado.");
+    public boolean eliminarProducto(String nombre){
+        for(int i = 0; i < productosPasillo.size(); i++)
+        {
+            Producto producto = productosPasillo.get(i);
+            
+             if(producto.getNombre().equalsIgnoreCase(nombre)){
+                stockPasillo -= producto.getCantidad();
+                productosPasillo.remove(i);
+                return true;
+            }
+        } 
+        return false;  
     }
+    //Tal vez no se utilize.
+   /* public boolean eliminarProducto(Producto producto1){
+        for(int i = 0; i < productosPasillo.size(); i++){
+            Producto producto = productosPasillo.get(i);
+            if(producto.equals(producto1)
+            {
+                stockPasillo -= producto.getStock();
+                productosPasillo.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }*/
     public void listarProductos(){
         for(int i = 0; i < productosPasillo.size(); i++){
             Producto producto = productosPasillo.get(i);
-            System.out.println("Producto " + (i + 1) + ":");
             System.out.println("Nombre: "+producto.getNombre()+", Codigo: "+producto.getCodigo()+", Categoria: "+producto.getCategoria()+", Precio: "+producto.getPrecio()+", Cantidad: "+producto.getCantidad());
         }
-        System.out.println("");
+    }
+    public ArrayList obtenerProductos(){
+        ArrayList productosCopia = new ArrayList();
+        productosCopia.addAll(productosPasillo);
+        return productosCopia;
     }
     //Metodos Setters.
-    public void setCategoriaPasillo(String categoriaPasillo){
+    public void setCategoriaPasillo(String categoriaPasillo) throws CategoryException{
         if(categoriaPasillo != null)
             this.categoriaPasillo = categoriaPasillo;
+        else{
+            throw new CategoryException("Categoria invalida.");
+        }
     }
-    public void setStockPasillo(int stockPasillo){
-        this.stockPasillo = stockPasillo;
+    public void setStockPasillo(int stockPasillo) throws NumberException{
+        if(stockPasillo >= 0)
+            this.stockPasillo = stockPasillo;
+        else
+            throw new NumberException("Stock invalido.");
     }
     //Metodos Getters.
     public String getCategoriaPasillo(){
