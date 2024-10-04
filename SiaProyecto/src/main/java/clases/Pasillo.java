@@ -4,7 +4,6 @@ import excepciones.NameException;
 import excepciones.NumberException;
 import excepciones.CategoryException;
 import java.util.ArrayList;
-import java.io.*;
 
 /*
 Esta clase se encarga de administrar los distintos productos del supermercado,
@@ -44,14 +43,13 @@ public class Pasillo {
     }
 
     //metodo para agregar productos mediante un producto
-    public boolean agregarProducto(Producto producto){
+    public void agregarProducto(Producto producto){
         if(productosPasillo.contains(producto)){
             System.out.println("El producto ya se encuentra en la lista.");
-            return false;
+            return;
         }
         stockPasillo += producto.getCantidad();
         productosPasillo.add(producto);
-        return true;
     }
     
     //metodo agregar producto mediante los componentes de producto
@@ -121,16 +119,6 @@ public class Pasillo {
     }
     
     //metodo para eliminar un producto
-    public Producto buscarProducto(String nombre){
-        for(int i = 0; i < productosPasillo.size(); i++){
-            Producto producto = productosPasillo.get(i);
-            if(producto.getNombre().equalsIgnoreCase(nombre))
-                return producto;
-        }
-        return null;
-    }
-    
-    
     public boolean eliminarProducto(String nombre){
         for(int i = 0; i < productosPasillo.size(); i++)
         {

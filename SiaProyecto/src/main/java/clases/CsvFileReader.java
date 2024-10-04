@@ -17,6 +17,7 @@ con cualquier funcion del supermercado este archivo tipo csv.
 */
 
 public class CsvFileReader {
+    
     //variable que sera el delimitador en nuestro archivo csv
     private String delimiter;
     

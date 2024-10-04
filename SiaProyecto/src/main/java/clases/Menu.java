@@ -4,7 +4,6 @@ import excepciones.CodeException;
 import excepciones.NameException;
 import excepciones.NumberException;
 import excepciones.CategoryException;
-import excepciones.CorridorException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -69,11 +68,10 @@ public class Menu {
             }
         }
     }
-    
+    //funcion para añadir datos al supermercado
     public void añadirDatos(){
         
     }
-    
     //funcion para eliminar los datos del supermercado
     public void eliminarDatos()throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
@@ -95,32 +93,7 @@ public class Menu {
         System.out.println("Producto eliminado correctamente.");
        
     }
-        public void eliminarDatos(String categoria, String nombre){
-        
-        Pasillo pasillo1 = supermercado.buscarPasillo(categoria);
-
-        pasillo1.eliminarProducto(nombre);
-
-    }
-    public void eliminarProducto(String nombre){
-        ArrayList<Pasillo> pasillos = supermercado.obtenerPasillos();
-        for(int i = 0; i < pasillos.size(); i++){
-            Producto producto1 = ((Pasillo)pasillos.get(i)).buscarProducto(nombre);
-            if(producto1 != null){
-                supermercado.buscarPasillo(producto1.getCategoria()).eliminarProducto(nombre);
-            }
-                
-        }
-    }
-    public boolean buscarProducto(String nombre){
-        ArrayList<Pasillo> pasillos = supermercado.obtenerPasillos();
-        for(int  i = 0; i < pasillos.size(); i++){
-            Producto producto1 = ((Pasillo)pasillos.get(i)).buscarProducto(nombre);
-            if(producto1 != null)
-                return true;
-        }
-        return false;
-    }
+    //funcion para mostrar el menu de añadir datos (submenu)
     public void textoMenuAñadirDatos(){
         System.out.println("1. Agregar producto");
 
@@ -174,12 +147,10 @@ public class Menu {
     }
     
     //funcion para añadir un producto
-    public void añadirProducto(Producto producto1) throws CorridorException{
+    public void añadirProducto(Producto producto1){
         Pasillo pasillo1 = supermercado.buscarPasillo(producto1.getCategoria());
-        if(pasillo1 != null)
-            pasillo1.agregarProducto(producto1);
-        else
-            throw new CorridorException("Pasillo invalido.");
+        
+        pasillo1.agregarProducto(producto1);
     }
     
     //funcion para añadir un producto por consola
