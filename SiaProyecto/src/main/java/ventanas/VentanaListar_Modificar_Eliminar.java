@@ -5,31 +5,31 @@
 package ventanas;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author isica
  */
-public class VentanaListar extends javax.swing.JFrame {
+public class VentanaListar_Modificar_Eliminar extends javax.swing.JFrame {
 
     /**
      * Creates new form VentanaListar
      */
-    public VentanaListar(String datos) {
+    public VentanaListar_Modificar_Eliminar(String datos) {
         
         initComponents();
         
         String[] arr = datos.split("\n");
         DefaultTableModel model = (DefaultTableModel) listaProductos.getModel();
         
-        for (int i = 0;i<arr.length;i++){
-            String[] cc = arr[i].split(",");
-            model.addRow(cc);
+        for(int i = 0;i<arr.length;i++){
+            String[] data = arr[i].split(",");
+            model.addRow(data);
         }
-            
-         
-        
+
     }
 
     /**
@@ -45,6 +45,8 @@ public class VentanaListar extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         listaProductos = new javax.swing.JTable();
         botonVolverVentanaListar = new javax.swing.JButton();
+        botonEliminarVentanaListar = new javax.swing.JButton();
+        botonModificarVentanaListar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,7 +59,7 @@ public class VentanaListar extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Nombre", "Categoiria", "Cantidad", "Precio"
+                "Codigo", "Nombre", "Categoria", "Cantidad", "Precio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -74,18 +76,35 @@ public class VentanaListar extends javax.swing.JFrame {
 
         botonVolverVentanaListar.setText("Vovler");
 
+        botonEliminarVentanaListar.setText("Eliminar");
+        botonEliminarVentanaListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarVentanaListarActionPerformed(evt);
+            }
+        });
+
+        botonModificarVentanaListar.setText("Modifcar");
+        botonModificarVentanaListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarVentanaListarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(titulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonVolverVentanaListar)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonVolverVentanaListar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonEliminarVentanaListar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonModificarVentanaListar))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -96,18 +115,40 @@ public class VentanaListar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botonVolverVentanaListar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonEliminarVentanaListar)
+                    .addComponent(botonModificarVentanaListar)
+                    .addComponent(botonVolverVentanaListar))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonEliminarVentanaListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarVentanaListarActionPerformed
+
+    }//GEN-LAST:event_botonEliminarVentanaListarActionPerformed
+
+    private void botonModificarVentanaListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarVentanaListarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonModificarVentanaListarActionPerformed
     
     public JButton getBotonVolverVentanaListar(){
         return botonVolverVentanaListar;
     }
+    public JButton getBotonEliminarVentanaListar(){
+        return botonEliminarVentanaListar;
+    }
+    public JButton getBotonModificarVentanaListar(){
+        return botonModificarVentanaListar;
+    }
+    public JTable getListTable(){
+        return listaProductos;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonEliminarVentanaListar;
+    private javax.swing.JButton botonModificarVentanaListar;
     private javax.swing.JButton botonVolverVentanaListar;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable listaProductos;

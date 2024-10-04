@@ -26,7 +26,6 @@
           <Group type="102" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="botonEliminar" max="32767" attributes="0"/>
                   <Component id="botonAgregar" max="32767" attributes="0"/>
                   <Component id="botonReporte" alignment="1" max="32767" attributes="0"/>
                   <Component id="botonListar" alignment="0" max="32767" attributes="0"/>
@@ -39,20 +38,18 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="92" max="32767" attributes="0"/>
               <Component id="titulo" max="-2" attributes="0"/>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="botonAgregar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="botonEliminar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="botonListar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="botonReporte" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="botonVolverMenuEmpleado" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -66,11 +63,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAgregarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="botonEliminar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Eliminar "/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="botonReporte">
       <Properties>
         <Property name="text" type="java.lang.String" value="Generar Reporte"/>
@@ -78,8 +70,11 @@
     </Component>
     <Component class="javax.swing.JButton" name="botonListar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Listar "/>
+        <Property name="text" type="java.lang.String" value="Listar/Eliminar/Modificar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonListarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="titulo">
       <Properties>

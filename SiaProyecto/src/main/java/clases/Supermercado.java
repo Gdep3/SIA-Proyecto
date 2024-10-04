@@ -41,22 +41,6 @@ public class Supermercado {
         this.pasillosPorCategoria = new HashMap<>(pasillosPorCategoria);
     }
     
-    //funcion para guardar en csv cada producto agregado 
-    public void guardarEnCsv(String archivoDestino, Producto producto) throws IOException{
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(archivoDestino, true))){
-            
-            bw.write(producto.getNombre() + ";" +
-                    producto.getCategoria()+ ";" +
-                    producto.getCantidad() + ";" +
-                    producto.getPrecio() + ";" +
-                    producto.getCodigo());
-            bw.newLine();
-            
-        } catch (IOException e){
-            System.out.println("Error al escribir en el archivo Csv");
-        }
-    }
-    
     //funcion para agregar pasillos al supermercado
     public void agregarPasillo(Pasillo pasillo1){
         if(pasillosPorCategoria.containsKey(pasillo1.getCategoriaPasillo())){
