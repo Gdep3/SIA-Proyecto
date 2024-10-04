@@ -1,6 +1,9 @@
 package ventanas;
 
 import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -16,8 +19,15 @@ public class VentanaCliente extends javax.swing.JFrame {
     /**
      * Creates new form MenuCliente
      */
-    public VentanaCliente() {
+    public VentanaCliente(String datos) {
         initComponents();
+                String[] arr = datos.split("\n");
+        DefaultTableModel model = (DefaultTableModel) listaCliente.getModel();
+        
+        for(int i = 0;i<arr.length;i++){
+            String[] data = arr[i].split(",");
+            model.addRow(data);
+        }
     }
 
     /**
@@ -29,114 +39,170 @@ public class VentanaCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        botonListar = new javax.swing.JButton();
-        botonComprar = new javax.swing.JButton();
-        botonBuscar = new javax.swing.JButton();
-        botonVolver = new javax.swing.JButton();
+        botonVolverMenuCliente = new javax.swing.JButton();
+        botonAceptarMenuCliente = new javax.swing.JButton();
         titulo = new javax.swing.JLabel();
+        dropDownFiltros = new javax.swing.JComboBox<>();
+        textoFiltrar = new javax.swing.JLabel();
+        barraBuscarVentanaCliente = new javax.swing.JTextField();
+        botonBuscar = new javax.swing.JButton();
+        botonCarrito = new javax.swing.JButton();
+        listaProductosCliente = new javax.swing.JScrollPane();
+        listaCliente = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        botonListar.setText("Listar Productos");
-        botonListar.addActionListener(new java.awt.event.ActionListener() {
+        botonVolverMenuCliente.setText("Volver");
+        botonVolverMenuCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonVolverMenuCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonListarActionPerformed(evt);
+                botonVolverMenuClienteActionPerformed(evt);
             }
         });
 
-        botonComprar.setText("Comprar Productos");
-        botonComprar.addActionListener(new java.awt.event.ActionListener() {
+        botonAceptarMenuCliente.setText("Añadir carrito");
+        botonAceptarMenuCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonAceptarMenuCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonComprarActionPerformed(evt);
-            }
-        });
-
-        botonBuscar.setText("Buscar Producto");
-        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscarActionPerformed(evt);
-            }
-        });
-
-        botonVolver.setText("Volver");
-        botonVolver.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        botonVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonVolverActionPerformed(evt);
+                botonAceptarMenuClienteActionPerformed(evt);
             }
         });
 
         titulo.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo.setText("Opciones de Cliente");
+        titulo.setText("Comprar producto");
+
+        dropDownFiltros.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        textoFiltrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textoFiltrar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        textoFiltrar.setText("Filtrar por:");
+
+        botonBuscar.setText("Buscar");
+
+        botonCarrito.setText("Carrito");
+        botonCarrito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCarritoActionPerformed(evt);
+            }
+        });
+
+        listaCliente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Precio"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        listaCliente.getTableHeader().setReorderingAllowed(false);
+        listaProductosCliente.setViewportView(listaCliente);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(130, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botonListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonComprar, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                    .addComponent(botonVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(130, Short.MAX_VALUE))
             .addComponent(titulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(70, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonVolverMenuCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                        .addComponent(botonAceptarMenuCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(botonBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(barraBuscarVentanaCliente))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonCarrito)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textoFiltrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dropDownFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(listaProductosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addGap(40, 40, 40)
                 .addComponent(titulo)
-                .addGap(18, 18, 18)
-                .addComponent(botonListar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonComprar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonBuscar)
+                    .addComponent(barraBuscarVentanaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonBuscar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dropDownFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoFiltrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonCarrito))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonVolver)
-                .addGap(61, 61, 61))
+                .addComponent(listaProductosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonVolverMenuCliente)
+                    .addComponent(botonAceptarMenuCliente))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    public JButton getBotonBuscar(){
+
+    public JTextField getBarraBuscarVentanaCliente() {
+        return barraBuscarVentanaCliente;
+    }
+
+    public JButton getBotonAceptarMenuCliente() {
+        return botonAceptarMenuCliente;
+    }
+
+    public JButton getBotonBuscar() {
         return botonBuscar;
     }
-    public JButton getBotonComprar(){
-        return botonComprar;
+
+    public JButton getBotonCarrito() {
+        return botonCarrito;
     }
-    public JButton getBotonListar(){
-        return botonListar;
+
+    public JButton getBotonVolverMenuCliente() {
+        return botonVolverMenuCliente;
     }
-    public JButton getBotonVolver(){
-        return botonVolver;
+
+    public JTable getListaCliente() {
+        return listaCliente;
     }
     
-    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+    private void botonVolverMenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverMenuClienteActionPerformed
 
-    }//GEN-LAST:event_botonBuscarActionPerformed
+    }//GEN-LAST:event_botonVolverMenuClienteActionPerformed
 
-    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
-
-    }//GEN-LAST:event_botonVolverActionPerformed
-
-    private void botonComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonComprarActionPerformed
+    private void botonAceptarMenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarMenuClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonComprarActionPerformed
+    }//GEN-LAST:event_botonAceptarMenuClienteActionPerformed
 
-    private void botonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarActionPerformed
+    private void botonCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCarritoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonListarActionPerformed
+    }//GEN-LAST:event_botonCarritoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField barraBuscarVentanaCliente;
+    private javax.swing.JButton botonAceptarMenuCliente;
     private javax.swing.JButton botonBuscar;
-    private javax.swing.JButton botonComprar;
-    private javax.swing.JButton botonListar;
-    private javax.swing.JButton botonVolver;
+    private javax.swing.JButton botonCarrito;
+    private javax.swing.JButton botonVolverMenuCliente;
+    private javax.swing.JComboBox<String> dropDownFiltros;
+    private javax.swing.JTable listaCliente;
+    private javax.swing.JScrollPane listaProductosCliente;
+    private javax.swing.JLabel textoFiltrar;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

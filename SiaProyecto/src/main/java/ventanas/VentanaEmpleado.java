@@ -31,7 +31,7 @@ public class VentanaEmpleado extends javax.swing.JFrame {
 
         botonAgregar = new javax.swing.JButton();
         botonReporte = new javax.swing.JButton();
-        botonListar = new javax.swing.JButton();
+        botonListar_Modificar_Eliminar = new javax.swing.JButton();
         titulo = new javax.swing.JLabel();
         botonVolverMenuEmpleado = new javax.swing.JButton();
 
@@ -46,10 +46,10 @@ public class VentanaEmpleado extends javax.swing.JFrame {
 
         botonReporte.setText("Generar Reporte");
 
-        botonListar.setText("Listar/Eliminar/Modificar");
-        botonListar.addActionListener(new java.awt.event.ActionListener() {
+        botonListar_Modificar_Eliminar.setText("Listar/Eliminar/Modificar");
+        botonListar_Modificar_Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonListarActionPerformed(evt);
+                botonListar_Modificar_EliminarActionPerformed(evt);
             }
         });
 
@@ -73,7 +73,7 @@ public class VentanaEmpleado extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(botonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonListar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonListar_Modificar_Eliminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonVolverMenuEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
@@ -86,12 +86,12 @@ public class VentanaEmpleado extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(botonAgregar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonListar)
+                .addComponent(botonListar_Modificar_Eliminar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonReporte)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonVolverMenuEmpleado)
-                .addGap(41, 41, 41))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
@@ -100,8 +100,8 @@ public class VentanaEmpleado extends javax.swing.JFrame {
     public JButton getBotonAgregar(){
         return botonAgregar;
     }
-    public JButton getBotonListar(){
-        return botonListar;
+    public JButton getBotonListar_Modificar_Eliminar(){
+        return botonListar_Modificar_Eliminar;
     }
     public JButton getBotonReporte(){
         return botonReporte;
@@ -118,13 +118,13 @@ public class VentanaEmpleado extends javax.swing.JFrame {
 
     }//GEN-LAST:event_botonVolverMenuEmpleadoActionPerformed
 
-    private void botonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarActionPerformed
+    private void botonListar_Modificar_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListar_Modificar_EliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonListarActionPerformed
+    }//GEN-LAST:event_botonListar_Modificar_EliminarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregar;
-    private javax.swing.JButton botonListar;
+    private javax.swing.JButton botonListar_Modificar_Eliminar;
     private javax.swing.JButton botonReporte;
     private javax.swing.JButton botonVolverMenuEmpleado;
     private javax.swing.JLabel titulo;

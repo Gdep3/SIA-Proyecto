@@ -31,10 +31,12 @@ public class Producto {
         this.precio = precio;
     }
     
-    public String aString() {
+    public String obtenerStringAtributos() {
        return codigo+", "+nombre+", "+categoria+ ", "+cantidad + ", " + precio + "\n";
     }
-    
+    public String obtenerNombrePrecio(){
+        return nombre + ", " + precio + "\n";
+    }
     //Metodos Setters.
     public void setNombre(String nombre) throws NameException{
         if(nombre != null && !nombre.equals(""))
@@ -80,7 +82,7 @@ public class Producto {
     public int getCantidad(){
         return cantidad;
     }
-    public double getPrecio(){
+    public int getPrecio(){
         return precio;
     }        
 }
