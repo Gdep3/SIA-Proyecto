@@ -41,14 +41,9 @@ public class Cliente extends Usuario{
         totalCompras += totalComprasPrecio;
         return totalCompras;
     }
+    //No se si esto esta bien, si se puede o no hacer.
     public void añadirAHistorial(){
         historialCompras.addAll(compras);
-    }
-    public void mostarHistorial(){
-        if(historialCompras.isEmpty() != true)
-            for(int i = 0; i < historialCompras.size(); i++){
-                System.out.print(historialCompras.get(i));
-            }
     }
     public void eliminarCompra(String nombre){
         for(int i = 0; i < compras.size(); i++){

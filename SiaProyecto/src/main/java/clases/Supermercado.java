@@ -125,7 +125,9 @@ public class Supermercado {
         for(int i = 0; i < pasillos.size(); i++){
             Producto producto1 = ((Pasillo)pasillos.get(i)).buscarProducto(nombre);
             if(producto1 != null){
-                pasillos.get(i).eliminarProducto(nombre);
+                pasillos.get(i).eliminarProducto(producto1);
+                stockTotal -= producto1.getCantidad();
+                return;
             }   
         }
     }
@@ -133,6 +135,7 @@ public class Supermercado {
         Pasillo pasillo1 = pasillosPorCategoria.get(categoria);
 
         pasillo1.eliminarProducto(nombre);
+        stockTotal -= pasillo1.getStockPasillo();
 
     }
     //Setters

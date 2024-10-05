@@ -389,7 +389,6 @@ public class Controlador implements ActionListener{
         //Eliminar producto.
         if(ventanaListarModificarEliminar != null && ee.getSource() == ventanaListarModificarEliminar.getBotonEliminarVentanaListar()){
             DefaultTableModel model = (DefaultTableModel) (ventanaListarModificarEliminar.getListTable()).getModel();
-
             if((ventanaListarModificarEliminar.getListTable()).getSelectedRowCount() == 1){
                 //Se obtiene el nombre del producto en esa columna.
                 String nombre = (ventanaListarModificarEliminar.getListTable()).getValueAt(ventanaListarModificarEliminar.getListTable().getSelectedRow(), 1).toString().trim();
