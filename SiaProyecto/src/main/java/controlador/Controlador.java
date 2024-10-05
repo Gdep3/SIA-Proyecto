@@ -6,9 +6,13 @@ import java.awt.event.ActionEvent;
 import ventanas.*;
 
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 /**
@@ -17,15 +21,19 @@ import javax.swing.table.TableRowSorter;
  */
 public class Controlador implements ActionListener{
     private Supermercado supermercado;
+    private Cliente cliente;
+    
     private VentanaPrincipal menuMain;
     private VentanaEmpleado menuEmpleado;
     private VentanaCliente menuCliente;
+    private VentanaCarrito menuCarrito;
     private VentanaListar_Modificar_Eliminar ventanaListarModificarEliminar;
     private VentanaAgregar menuAgregar;
     
     public void iniciar(){
         supermercado = new Supermercado();
-
+        
+        cliente = new Cliente("jkdsf", "21674373-3");
         
         Pasillo pasillo1 = new Pasillo("Lacteos");
         pasillo1.agregarProducto("Leche", "123456789123", "Lacteos", 910, 12);
@@ -55,6 +63,19 @@ public class Controlador implements ActionListener{
         pasillo1.agregarProducto("Pasta de dientes", "084943503992", "Cuidado personal", 1000, 40);
         supermercado.agregarPasillo(pasillo1);
         
+
+        String className = "javax.swing.plaf.nimbus.NimbusLookAndFeel";
+        try {
+            UIManager.setLookAndFeel(className);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
         menuMain = new VentanaPrincipal();
         
         menuMain.getBotonCliente().addActionListener(this);
@@ -76,7 +97,7 @@ public class Controlador implements ActionListener{
 
             menuCliente.getBotonVolverMenuCliente().addActionListener(this);
             menuCliente.getBotonBuscar().addActionListener(this);
-            menuCliente.getBotonAceptarMenuCliente().addActionListener(this);
+            menuCliente.getBotonAñadirCarritoMenuCliente().addActionListener(this);
             menuCliente.getBotonCarrito().addActionListener(this);
             
             menuCliente.setAlwaysOnTop(true);
@@ -120,7 +141,125 @@ public class Controlador implements ActionListener{
             } 
             return;
         }
-        
+        if(menuCliente != null && ee.getSource() == menuCliente.getBotonCarrito()){
+            menuCarrito = new VentanaCarrito(cliente.comprasAString());
+            
+            menuCarrito.getBotonComprarCarrito().addActionListener(this);
+            menuCarrito.getBotonVovlerCarrito().addActionListener(this);
+            menuCarrito.getBotonEliminarCarrito().addActionListener(this);
+            
+            menuCarrito.getTotalTexto().setText(cliente.totalComprasPrecio());
+            
+            menuCarrito.setAlwaysOnTop(true);
+            menuCarrito.setTitle("Carrito");
+            menuCarrito.setSize(500, 400);
+            menuCarrito.setResizable(false);
+            menuCarrito.setLocationRelativeTo(null);
+            menuCarrito.setVisible(true);
+            return;
+
+        }
+        if(menuCliente != null && ee.getSource() == menuCliente.getBotonUsuarioCliente()){
+            return;
+        }
+        //Accines menu carrito.
+        //Añadir a carrito.
+        if(menuCliente != null && ee.getSource() == menuCliente.getBotonAñadirCarritoMenuCliente()){
+            DefaultTableModel model = (DefaultTableModel) menuCliente.getListaCliente().getModel();
+            
+            switch (menuCliente.getListaCliente().getSelectedRowCount()) {
+                case 1:
+                    String cantidad = JOptionPane.showInputDialog(menuCliente, "Ingrese la cantidad de " + menuCliente.getListaCliente().getValueAt(menuCliente.getListaCliente().getSelectedRow(), 0).toString().trim(), "Cantidad a comprar", JOptionPane.INFORMATION_MESSAGE);
+                    if(cantidad == null || cantidad.equals("")){
+                        JOptionPane.showMessageDialog(menuCliente, "Por favor ingrese una cantidad", "Producto no añadido a carrito", JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    }   Producto producto = supermercado.obtenerProductoEnSupermercado(menuCliente.getListaCliente().getValueAt(menuCliente.getListaCliente().getSelectedRow(), 0).toString().trim());
+                    if(producto.getCantidad() >= Integer.parseInt(cantidad)){
+                        cliente.guardarCompras(menuCliente.getListaCliente().getValueAt(menuCliente.getListaCliente().getSelectedRow(), 0).toString().trim(), Double.parseDouble(menuCliente.getListaCliente().getValueAt(menuCliente.getListaCliente().getSelectedRow(), 1).toString().trim()), Integer.parseInt(cantidad));
+                        
+                        model.setValueAt(producto.getCantidad() - Integer.parseInt(cantidad), menuCliente.getListaCliente().convertRowIndexToModel(menuCliente.getListaCliente().getSelectedRow()), 2);
+                        
+                        try{
+                            producto.setCantidad(producto.getCantidad() - Integer.parseInt(cantidad));
+                        }catch(NumberException e){
+                            e.printStackTrace();
+                        }
+                        
+                    }else{
+                        JOptionPane.showMessageDialog(menuCliente, "Cantidad invalida,\ncantidad ingresada sobrepasa el stock del supermercado." , "Error cantida invalida", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }   break;
+                case 0:
+                    JOptionPane.showMessageDialog(menuCliente, "Por favor seleccione un producto", "Ningún producto seleccionado", JOptionPane.ERROR_MESSAGE);
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(menuCliente, "Por favor seleccione solo un producto", "Ningún producto seleccionado", JOptionPane.ERROR_MESSAGE);
+                    break;
+            }
+            return;
+        }
+        //Comprar en carrito
+        if(menuCarrito != null && ee.getSource() ==  menuCarrito.getBotonComprarCarrito()){   
+            if(cliente.getTotalComprasCantidad() != 0){
+                supermercado.setVentas(cliente.getTotalComprasCantidad());
+                supermercado.setStockTotal(cliente.getTotalComprasCantidad() * -1);
+                cliente.vaciarCarrito();
+                menuCarrito.dispose();
+            }
+            return;
+        }
+        //Eliminar del carrito.
+        if(menuCarrito != null && ee.getSource() == menuCarrito.getBotonEliminarCarrito()){
+            DefaultTableModel model = (DefaultTableModel) (menuCarrito.getListaCompras()).getModel();
+
+            if((menuCarrito.getListaCompras()).getSelectedRowCount() == 1){
+                String nombre = (menuCarrito.getListaCompras()).getValueAt(menuCarrito.getListaCompras().getSelectedRow(), 0).toString().trim();
+                int respuesta = JOptionPane.showConfirmDialog(menuCarrito, "Esta seguro   de que quiere eliminar este producto?", "Eliminando producto del carrito", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+                if(respuesta == JOptionPane.YES_OPTION){  
+                    int cantidad = Integer.parseInt((menuCarrito.getListaCompras()).getValueAt(menuCarrito.getListaCompras().getSelectedRow(), 2).toString().trim());
+                    
+                    cliente.eliminarCompra(nombre);
+                    menuCarrito.getTotalTexto().setText(cliente.totalComprasPrecio());
+                    
+                    try{
+                        Producto producto = supermercado.obtenerProductoEnSupermercado(nombre);
+                        producto.setCantidad(producto.getCantidad() + cantidad);
+                        
+                        DefaultTableModel modelCliente = (DefaultTableModel) menuCliente.getListaCliente().getModel();
+                        for(int i = 0; i < modelCliente.getRowCount(); i++){
+                            if(modelCliente.getValueAt(i, 0).equals(nombre)){
+                                modelCliente.setValueAt(producto.getCantidad(), i, 2);
+                                break;
+                            }
+                        }
+                        
+                    }catch(NumberException e){
+                        e.printStackTrace();
+                    }
+                    model.removeRow(menuCarrito.getListaCompras().convertRowIndexToModel((menuCarrito.getListaCompras().getSelectedRow())));
+                    
+                }else{
+                    JOptionPane.showMessageDialog(menuCarrito, "Producto no fue eliminado.", "Cancelando", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+                if(cliente.buscarCompra(nombre) == false)
+                    JOptionPane.showMessageDialog(menuCarrito, "Producto eliminado correctamente del carrito.", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
+                else
+                    JOptionPane.showMessageDialog(menuCarrito,"Error, el producto no fue eliminado correctamente del carrito.", "Error al eliminar", JOptionPane.ERROR_MESSAGE);
+            }else
+            {
+                if((menuCarrito.getListaCompras()).getSelectedRowCount() == 0)
+                    JOptionPane.showMessageDialog(menuCarrito, "Error, por favor seleccione solo una columna.", "Error al eliminar", JOptionPane.ERROR_MESSAGE);
+                else
+                    JOptionPane.showMessageDialog(menuCarrito, "Error, seleccione una columna.", "Error al eliminar", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        //Boton volver a menu cliente.
+        if(menuCarrito != null && ee.getSource() == menuCarrito.getBotonVovlerCarrito()){
+            menuCarrito.dispose();
+            return;
+        } 
         //Acciones menu empleado.
         //Agregar.
         if(menuEmpleado != null && ee.getSource() == menuEmpleado.getBotonAgregar()){
@@ -395,7 +534,6 @@ public class Controlador implements ActionListener{
                     ventanaListarModificarEliminar.getListTable().setValueAt(nuevaCantidad,ventanaListarModificarEliminar.getListTable().getSelectedRow(), 3);
                 }   
             }
-            
             return; 
         } 
         //Buscar producto.

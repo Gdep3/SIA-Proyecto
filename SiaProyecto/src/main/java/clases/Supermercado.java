@@ -95,7 +95,7 @@ public class Supermercado {
             Pasillo pasillo = (Pasillo)pasillos.get(i);
             ArrayList productos = pasillo.obtenerProductos();
             for(int k = 0; k < productos.size(); k++){
-                ret += ((Producto)productos.get(k)).obtenerNombrePrecio();
+                ret += ((Producto)productos.get(k)).obtenerNombrePrecioCantidad();
             }
         }
         return ret;
@@ -113,6 +113,14 @@ public class Supermercado {
         }
         return false;
     }
+    public Producto obtenerProductoEnSupermercado(String nombre){
+        for(int i = 0; i < pasillos.size(); i++){
+            Producto producto1 = ((Pasillo)pasillos.get(i)).buscarProducto(nombre);
+            if(producto1 != null)
+                return producto1;
+        }
+        return null;
+    }
     public void eliminarProductoDelSupermercado(String nombre){
         for(int i = 0; i < pasillos.size(); i++){
             Producto producto1 = ((Pasillo)pasillos.get(i)).buscarProducto(nombre);
@@ -129,10 +137,10 @@ public class Supermercado {
     }
     //Setters
     public void setVentas(int ventas){
-        this.ventas = ventas;
+        this.ventas += ventas;
     }
     public void setStockTotal(int stockTotal){
-        this.stockTotal = stockTotal;
+        this.stockTotal += stockTotal;
     }
     //Getters
     public int getVentas(){
