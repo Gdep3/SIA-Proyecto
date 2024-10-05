@@ -63,10 +63,11 @@ public class Controlador implements ActionListener{
         
         login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         login.setTitle("Menu Inicio");
-        login.setSize(500, 400);
         login.setResizable(false);
         login.setLocationRelativeTo(null);
         login.setVisible(true);
+        
+        
     }
     //Se deberian hacer dos controladores para las opciones de menu cliente y otro para de empleado.
     @Override
@@ -74,6 +75,17 @@ public class Controlador implements ActionListener{
         
         // Acciones menú login
         if (ee.getSource() == login.getBotonAceptar()) {
+            
+            Usuario user = new Usuario();
+            try{
+                user.setRut(login.getCampoRut().getText());
+            }catch(RutException e){
+                JOptionPane.showMessageDialog(login, "Rut invalido.\nIngrese un rut válido.", "Error al ingresar el rut", JOptionPane.ERROR_MESSAGE);
+                return;
+            }/*catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(login, "Error al ingresa la cantidad.\nIntente nuevamente.", "Error al ingresar la cantidad", JOptionPane.ERROR_MESSAGE);
+                return;
+            }*/
             menuMain = new VentanaPrincipal();
             
             menuMain.getBotonCliente().addActionListener(this);
@@ -85,11 +97,14 @@ public class Controlador implements ActionListener{
             menuMain.setResizable(false);
             menuMain.setLocationRelativeTo(null);
             menuMain.setVisible(true);
+            
+            
         }
         if (ee.getSource() == login.getBotonSalir()) {
             System.exit(0);
         }
         
+        // Acciones menu Main
         if(ee.getSource() == menuMain.getBotonCliente()){
             menuCliente = new VentanaCliente(supermercado.listaDeProductosNombrePrecio());
 
