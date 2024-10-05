@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 public class Cliente extends Usuario{
     private ArrayList<String> compras;
+    private ArrayList<String> historialCompras;
     private int totalComprasCantidad;
     
     public Cliente(String nombre, String rut){
         super(nombre, rut);
         compras = new ArrayList();
+        historialCompras = new ArrayList();
     }
     
     @Override
@@ -38,6 +40,15 @@ public class Cliente extends Usuario{
         }
         totalCompras += totalComprasPrecio;
         return totalCompras;
+    }
+    public void añadirAHistorial(){
+        historialCompras.addAll(compras);
+    }
+    public void mostarHistorial(){
+        if(historialCompras.isEmpty() != true)
+            for(int i = 0; i < historialCompras.size(); i++){
+                System.out.print(historialCompras.get(i));
+            }
     }
     public void eliminarCompra(String nombre){
         for(int i = 0; i < compras.size(); i++){

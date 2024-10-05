@@ -203,6 +203,7 @@ public class Controlador implements ActionListener{
             if(cliente.getTotalComprasCantidad() != 0){
                 supermercado.setVentas(cliente.getTotalComprasCantidad());
                 supermercado.setStockTotal(cliente.getTotalComprasCantidad() * -1);
+                cliente.añadirAHistorial();
                 cliente.vaciarCarrito();
                 menuCarrito.dispose();
             }
