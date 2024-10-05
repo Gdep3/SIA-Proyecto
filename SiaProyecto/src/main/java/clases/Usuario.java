@@ -2,6 +2,7 @@ package clases;
 
 import excepciones.NameException;
 import excepciones.RutException;
+import java.util.regex.Pattern;
 
 
 public class Usuario{
@@ -26,11 +27,19 @@ public class Usuario{
             throw new NameException("Nombre no válido");
     }
     public void setRut(String rut) throws RutException{
-        String newRut = rut.formatted(".");
-        if(newRut.length() == 10 || newRut.length() == 9)
-            this.rut = rut;
-        else
+        if (rut == null || rut.isEmpty()) {
             throw new RutException();
+        }
+
+        if (rut.length() < 9 || rut.length() > 10) {
+            throw new RutException();
+        }
+        char guion = rut.charAt(rut.length() - 2);
+        if (guion != '-') {
+            throw new RutException();
+        }
+        this.rut = rut;
+        
     }
     public String getNombre(){
         return nombre;

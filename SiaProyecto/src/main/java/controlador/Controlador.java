@@ -77,15 +77,23 @@ public class Controlador implements ActionListener{
         if (ee.getSource() == login.getBotonAceptar()) {
             
             Usuario user = new Usuario();
+            // Excepción nombre
+            try {
+                user.setNombre(login.getCampoNombre().getText());
+            } catch(NameException e) {
+                JOptionPane.showMessageDialog(login, "Ingrese un nombre por favor.", "Error nombre no válido", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            // Excepción rut
             try{
                 user.setRut(login.getCampoRut().getText());
             }catch(RutException e){
-                JOptionPane.showMessageDialog(login, "Rut invalido.\nIngrese un rut válido.", "Error al ingresar el rut", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(login, "Rut inválido.\nIngrese un rut válido.", "Error al ingresar el rut", JOptionPane.ERROR_MESSAGE);
                 return;
-            }/*catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(login, "Error al ingresa la cantidad.\nIntente nuevamente.", "Error al ingresar la cantidad", JOptionPane.ERROR_MESSAGE);
-                return;
-            }*/
+            }
+            
+            // Excepción correo
+            
             menuMain = new VentanaPrincipal();
             
             menuMain.getBotonCliente().addActionListener(this);
