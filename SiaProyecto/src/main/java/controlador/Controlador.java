@@ -91,8 +91,13 @@ public class Controlador implements ActionListener{
                 JOptionPane.showMessageDialog(login, "Rut inválido.\nIngrese un rut válido.", "Error al ingresar el rut", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            
             // Excepción correo
+            try {
+                user.setCorreo(login.getCampoCorreo().getText());
+            } catch(MailException e) {
+                JOptionPane.showMessageDialog(login, "Correo inválido.", "Error al ingresar el correo", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             
             menuMain = new VentanaPrincipal();
             
