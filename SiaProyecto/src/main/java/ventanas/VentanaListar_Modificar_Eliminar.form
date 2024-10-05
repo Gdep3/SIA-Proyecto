@@ -136,7 +136,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="botonVolverVentanaListar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Vovler"/>
+        <Property name="text" type="java.lang.String" value="Volver"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="botonEliminarVentanaListar">

@@ -22,6 +22,7 @@ public class Controlador implements ActionListener{
     private VentanaCliente menuCliente;
     private VentanaListar_Modificar_Eliminar ventanaListarModificarEliminar;
     private VentanaAgregar menuAgregar;
+    private VentanaLogin login;
     
     public void iniciar(){
         supermercado = new Supermercado();
@@ -55,22 +56,40 @@ public class Controlador implements ActionListener{
         pasillo1.agregarProducto("Pasta de dientes", "084943503992", "Cuidado personal", 1000, 40);
         supermercado.agregarPasillo(pasillo1);
         
-        menuMain = new VentanaPrincipal();
+        login = new VentanaLogin();
         
-        menuMain.getBotonCliente().addActionListener(this);
-        menuMain.getBotonEmpleado().addActionListener(this);
+        login.getBotonAceptar().addActionListener(this);
+        login.getBotonSalir().addActionListener(this);
         
-        menuMain.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        menuMain.setTitle("Menu Inicio");
-        menuMain.setSize(500, 400);
-        menuMain.setResizable(false);
-        menuMain.setLocationRelativeTo(null);
-        menuMain.setVisible(true);
+        login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        login.setTitle("Menu Inicio");
+        login.setSize(500, 400);
+        login.setResizable(false);
+        login.setLocationRelativeTo(null);
+        login.setVisible(true);
     }
     //Se deberian hacer dos controladores para las opciones de menu cliente y otro para de empleado.
     @Override
     public void actionPerformed(ActionEvent ee){
-        //Acciones menu principal.
+        
+        // Acciones menú login
+        if (ee.getSource() == login.getBotonAceptar()) {
+            menuMain = new VentanaPrincipal();
+            
+            menuMain.getBotonCliente().addActionListener(this);
+            menuMain.getBotonEmpleado().addActionListener(this);
+            
+            menuMain.setAlwaysOnTop(true);
+            menuMain.setTitle("Menu Main");
+            menuMain.setSize(500, 400);
+            menuMain.setResizable(false);
+            menuMain.setLocationRelativeTo(null);
+            menuMain.setVisible(true);
+        }
+        if (ee.getSource() == login.getBotonSalir()) {
+            System.exit(0);
+        }
+        
         if(ee.getSource() == menuMain.getBotonCliente()){
             menuCliente = new VentanaCliente(supermercado.listaDeProductosNombrePrecio());
 
