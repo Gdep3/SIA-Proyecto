@@ -1,6 +1,5 @@
 package clases;
 
-
 import excepciones.RutException;
 
 
@@ -12,7 +11,7 @@ public class Usuario{
         this.nombre = nombre;
         this.rut = rut;
     }
-    public void  mostrarMenu() {
+    public void  mostrarInfo() {
         System.out.println("Menú Principal");
     }
     

@@ -9,8 +9,10 @@ public class Empleado extends Usuario{
     }
     
     @Override
-    public void mostrarMenu(){
-        System.out.println("Mostrando menu gerente");
+    public void mostrarInfo(){
+        System.out.println("Usuario: " + getNombre());
+        System.out.println("Rut: " + getRut());
+        System.out.println("Código del empleado: " + getCodigoGerente());
     }
     
     public void setCodigoGerente(int codigo){
