@@ -29,7 +29,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         botonCliente = new javax.swing.JButton();
-        botonGerente = new javax.swing.JButton();
+        botonEmpleado = new javax.swing.JButton();
         subtitulo = new javax.swing.JLabel();
         titulo = new javax.swing.JLabel();
 
@@ -37,10 +37,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         botonCliente.setText("Cliente");
 
-        botonGerente.setText("Empleado");
-        botonGerente.addActionListener(new java.awt.event.ActionListener() {
+        botonEmpleado.setText("Empleado");
+        botonEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonGerenteActionPerformed(evt);
+                botonEmpleadoActionPerformed(evt);
             }
         });
 
@@ -61,21 +61,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(72, Short.MAX_VALUE)
                 .addComponent(botonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(botonGerente, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                .addComponent(botonEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                 .addContainerGap(75, Short.MAX_VALUE))
             .addComponent(subtitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addContainerGap(67, Short.MAX_VALUE)
                 .addComponent(titulo)
                 .addGap(18, 18, 18)
                 .addComponent(subtitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonCliente)
-                    .addComponent(botonGerente))
+                    .addComponent(botonEmpleado))
                 .addContainerGap(121, Short.MAX_VALUE))
         );
 
@@ -84,18 +84,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public JButton getBotonCliente(){
         return botonCliente;
     }
-    public JButton getBotonGerente(){
-        return botonGerente;
+    public JButton getBotonEmpleado(){
+        return botonEmpleado;
     }
     
-    private void botonGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGerenteActionPerformed
+    private void botonEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpleadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonGerenteActionPerformed
+    }//GEN-LAST:event_botonEmpleadoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCliente;
-    private javax.swing.JButton botonGerente;
+    private javax.swing.JButton botonEmpleado;
     private javax.swing.JLabel subtitulo;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
