@@ -71,8 +71,9 @@ public class Supermercado {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoDestino,true))){
             bw.newLine();
             for(int i = 0 ; i < producto.size(); i++){
-                bw.write(producto.get(i));
-                bw.write("===========================================\n");
+                String[] arr = producto.get(i).split(",");
+                bw.write("Producto: " + arr[0] + "\n" + " - Precio: " + arr[1] + "\n" + " - Cantidad" + arr[2] + "\n");
+                bw.write("===========================================\n\n");
             }
         } catch(IOException e){
             System.out.println("Error al escribir en el archivo de ventas: " + e.getMessage());

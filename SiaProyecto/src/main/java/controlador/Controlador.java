@@ -206,7 +206,7 @@ public class Controlador implements ActionListener{
                         return;
                     }   Producto producto = supermercado.obtenerProductoEnSupermercado(menuCliente.getListaCliente().getValueAt(menuCliente.getListaCliente().getSelectedRow(), 0).toString().trim());
                     if(producto.getCantidad() >= Integer.parseInt(cantidad)){
-                        cliente.guardarCompras(menuCliente.getListaCliente().getValueAt(menuCliente.getListaCliente().getSelectedRow(), 0).toString().trim(), Double.parseDouble(menuCliente.getListaCliente().getValueAt(menuCliente.getListaCliente().getSelectedRow(), 1).toString().trim()), Integer.parseInt(cantidad));
+                        cliente.guardarCompras(menuCliente.getListaCliente().getValueAt(menuCliente.getListaCliente().getSelectedRow(), 0).toString().trim(), Integer.parseInt(menuCliente.getListaCliente().getValueAt(menuCliente.getListaCliente().getSelectedRow(), 1).toString().trim()), Integer.parseInt(cantidad));
                         
                         model.setValueAt(producto.getCantidad() - Integer.parseInt(cantidad), menuCliente.getListaCliente().convertRowIndexToModel(menuCliente.getListaCliente().getSelectedRow()), 2);
                         
