@@ -1,1 +1,3 @@
 =================Productos vendidos=================
+-usuario al principio
+-metodos set usados

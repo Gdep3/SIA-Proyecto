@@ -12,8 +12,6 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -36,7 +34,7 @@ public class Controlador implements ActionListener{
     private VentanaUsuarioCliente ventanaUsuarioCliente;
     private VentanaAgregar menuAgregar;
     private VentanaLogin login;
-    
+    Usuario user = new Usuario();
     //funcion para iniciar el programa 
     public void iniciar(){
         supermercado = new Supermercado();
@@ -60,8 +58,6 @@ public class Controlador implements ActionListener{
         
         // Acciones menú login
         if (ee.getSource() == login.getBotonAceptar()) {
-            
-            Usuario user = new Usuario();
             // Excepción nombre
             try {
                 user.setNombre(login.getCampoNombre().getText());
@@ -125,7 +121,6 @@ public class Controlador implements ActionListener{
             
             menuEmpleado.getBotonAgregar().addActionListener(this);
             menuEmpleado.getBotonListar_Modificar_Eliminar().addActionListener(this);
-            menuEmpleado.getBotonReporte().addActionListener(this);
             menuEmpleado.getBotonVolver().addActionListener(this);
             
             menuEmpleado.setAlwaysOnTop(true);
@@ -179,9 +174,9 @@ public class Controlador implements ActionListener{
                 ventanaUsuarioCliente = new VentanaUsuarioCliente("");
             
             ventanaUsuarioCliente.getBotonVovlerHistorial().addActionListener(this);
-            ventanaUsuarioCliente.getTitulo().setText("Bienvenido" + " " + datos[0]);
-            ventanaUsuarioCliente.getTextoRutCliente().setText(" Rut cliente: " + datos[1].trim());
-            ventanaUsuarioCliente.getTextoEmailCliente().setText(" Email cliente: ");
+            ventanaUsuarioCliente.getTitulo().setText("Bienvenido" + " " + user.getNombre());
+            ventanaUsuarioCliente.getTextoRutCliente().setText(" Rut cliente: " + user.getRut());
+            ventanaUsuarioCliente.getTextoEmailCliente().setText(" Email cliente: " + user.getCorreo());
             
             ventanaUsuarioCliente.setAlwaysOnTop(true);
             ventanaUsuarioCliente.setTitle("Cliente");
@@ -248,6 +243,7 @@ public class Controlador implements ActionListener{
                 cliente.vaciarCarrito();
                 menuCarrito.dispose();
             }
+             JOptionPane.showMessageDialog(menuCarrito, "Compra dentro del reporte.", "Reporte completado", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         //Eliminar del carrito.
@@ -318,7 +314,6 @@ public class Controlador implements ActionListener{
             menuAgregar.setResizable(false);
             menuAgregar.setLocationRelativeTo(null);
             menuAgregar.setVisible(true);
-            //supermercado.guardarEnCsv(producto);
             return;
         }
         //Listar/Modificar/Eliminar
@@ -338,10 +333,7 @@ public class Controlador implements ActionListener{
             ventanaListarModificarEliminar.setVisible(true);
             return;
         }
-        if(menuEmpleado != null && ee.getSource() == menuEmpleado.getBotonReporte()){
-            JOptionPane.showMessageDialog(menuEmpleado, "Creación del reporte completada.", "Reporte completado", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
+        
         if(menuEmpleado != null && ee.getSource() == menuEmpleado.getBotonVolver()){
             menuEmpleado.dispose();
             return;
