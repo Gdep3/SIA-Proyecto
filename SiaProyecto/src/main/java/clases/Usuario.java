@@ -17,8 +17,8 @@ public class Usuario{
         this.nombre = nombre;
         this.rut = rut;
     }
-    public void  mostrarInfo() {
-        System.out.println("Menú Principal");
+    public String datosAString(){
+        return nombre + ", " + rut;
     }
     
     public void setNombre(String nombre) throws NameException{

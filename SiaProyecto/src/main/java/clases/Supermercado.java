@@ -185,7 +185,7 @@ public class Supermercado {
             Pasillo pasillo = (Pasillo)pasillos.get(i);
             ArrayList productos = pasillo.obtenerProductos();
             for(int k = 0; k < productos.size(); k++){
-                ret += ((Producto)productos.get(k)).obtenerNombrePrecio();
+                ret += ((Producto)productos.get(k)).obtenerNombrePrecioCantidad();
             }
         }
         return ret;
@@ -203,11 +203,21 @@ public class Supermercado {
         }
         return false;
     }
+    public Producto obtenerProductoEnSupermercado(String nombre){
+        for(int i = 0; i < pasillos.size(); i++){
+            Producto producto1 = ((Pasillo)pasillos.get(i)).buscarProducto(nombre);
+            if(producto1 != null)
+                return producto1;
+        }
+        return null;
+    }
     public void eliminarProductoDelSupermercado(String nombre){
         for(int i = 0; i < pasillos.size(); i++){
             Producto producto1 = ((Pasillo)pasillos.get(i)).buscarProducto(nombre);
             if(producto1 != null){
-                pasillos.get(i).eliminarProducto(nombre);
+                pasillos.get(i).eliminarProducto(producto1);
+                stockTotal -= producto1.getCantidad();
+                return;
             }   
         }
     }
@@ -215,15 +225,16 @@ public class Supermercado {
         Pasillo pasillo1 = pasillosPorCategoria.get(categoria);
 
         pasillo1.eliminarProducto(nombre);
+        stockTotal -= pasillo1.getStockPasillo();
 
     }
 
     //Setters
     public void setVentas(int ventas){
-        this.ventas = ventas;
+        this.ventas += ventas;
     }
     public void setStockTotal(int stockTotal){
-        this.stockTotal = stockTotal;
+        this.stockTotal += stockTotal;
     }
     
     //Getters
