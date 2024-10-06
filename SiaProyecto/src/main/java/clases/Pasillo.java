@@ -53,16 +53,6 @@ public class Pasillo {
         stockPasillo += cantidad;
         productosPasillo.add(producto);
     }
-    /*public void cambiarAtributosProducto(Producto producto, String nombre, String codigo, String categoria, String precio, String cantidad) throws NameException {
-        int index = productosPasillo.indexOf(producto);
-        Producto productoPasillo = productosPasillo.get(index);
-        
-        if(productoPasillo != null){
-            cambiarNombre(productoPasillo, nombre)
-        }
-        else
-            System.out.println("No se encuentra ese producto.");
-    }*/
     public boolean cambiarNombre(Producto producto, String nombre) throws NameException{
         if(productosPasillo.contains(producto)){
            int index = productosPasillo.indexOf(producto);
