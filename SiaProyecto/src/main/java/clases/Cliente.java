@@ -14,8 +14,8 @@ public class Cliente extends Usuario{
     private int totalComprasCantidad;
     
     //Constructures
-    public Cliente(String nombre, String rut){
-        super(nombre, rut);
+    public Cliente(String nombre, String rut, String correo){
+        super(nombre, rut, correo);
         compras = new ArrayList();
         historialCompras = new ArrayList();
     }

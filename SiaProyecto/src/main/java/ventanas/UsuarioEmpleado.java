@@ -45,7 +45,6 @@ public class UsuarioEmpleado extends javax.swing.JFrame {
         botonAgregarStock = new javax.swing.JButton();
         botonVolverUsuarioEmpleado = new javax.swing.JButton();
         tituloUsuarioEmpleado = new javax.swing.JLabel();
-        textoCodigoEmpleado = new javax.swing.JLabel();
         textoRutEmpleado = new javax.swing.JLabel();
         CorreoEmpleado = new javax.swing.JLabel();
 
@@ -78,9 +77,6 @@ public class UsuarioEmpleado extends javax.swing.JFrame {
         tituloUsuarioEmpleado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tituloUsuarioEmpleado.setText("Menu de usuario");
 
-        textoCodigoEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        textoCodigoEmpleado.setText("Codgio:");
-
         textoRutEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         textoRutEmpleado.setText("Rut:");
 
@@ -97,28 +93,28 @@ public class UsuarioEmpleado extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonAgregarStock)
                 .addGap(22, 22, 22))
-            .addComponent(tituloUsuarioEmpleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(55, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(textoRutEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoRutEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(textoCodigoEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(CorreoEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(54, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tituloUsuarioEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addComponent(tituloUsuarioEmpleado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(textoRutEmpleado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textoCodigoEmpleado)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(CorreoEmpleado)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -142,10 +138,6 @@ public class UsuarioEmpleado extends javax.swing.JFrame {
         return productosSinStock;
     }
 
-    public JLabel getTextoCodigoEmpleado() {
-        return textoCodigoEmpleado;
-    }
-
     public JLabel getTextoRutEmpleado() {
         return textoRutEmpleado;
     }
@@ -165,7 +157,6 @@ public class UsuarioEmpleado extends javax.swing.JFrame {
     private javax.swing.JButton botonVolverUsuarioEmpleado;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable productosSinStock;
-    private javax.swing.JLabel textoCodigoEmpleado;
     private javax.swing.JLabel textoRutEmpleado;
     private javax.swing.JLabel tituloUsuarioEmpleado;
     // End of variables declaration//GEN-END:variables

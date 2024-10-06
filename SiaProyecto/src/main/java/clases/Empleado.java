@@ -11,8 +11,8 @@ public class Empleado extends Usuario{
     private ArrayList<String> productoSinStock;
     
     //Constructor
-    public Empleado(String nombre, String rut){
-        super(nombre, rut);
+    public Empleado(String nombre, String rut, String correo){
+        super(nombre, rut, correo);
         productoSinStock = new ArrayList();
     }
     

@@ -39,7 +39,8 @@ public class Controlador implements ActionListener{
     private VentanaAgregar menuAgregar;
     private UsuarioEmpleado ventanaUsuarioEmpleado;
     private VentanaLogin login;
-    Usuario user = new Usuario();
+    private Usuario user;
+
     
     
     
@@ -61,8 +62,7 @@ public class Controlador implements ActionListener{
             Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
         }
         login = new VentanaLogin();
-        cliente = new Cliente();
-        empleado = new Empleado();
+        user = new Usuario();;
         login.getBotonAceptar().addActionListener(this);
         login.getBotonSalir().addActionListener(this);
         login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -80,50 +80,32 @@ public class Controlador implements ActionListener{
         // Acciones menú login
         if (ee.getSource() == login.getBotonAceptar()) {
             // Excepción nombre
+            
             try {
-                user.setNombre(login.getCampoNombre().getText());
+                user.setNombre(login.getCampoNombre().getText().trim());
             } catch(NameException e) {
                 JOptionPane.showMessageDialog(login, "Ingrese un nombre por favor.", "Error nombre no válido", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             // Excepción rut
             try{
-                user.setRut(login.getCampoRut().getText());
+                user.setRut(login.getCampoRut().getText().trim());
             }catch(RutException e){
                 JOptionPane.showMessageDialog(login, "Rut inválido.\nIngrese un rut válido.", "Error al ingresar el rut", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             // Excepción correo
             try {
-                user.setCorreo(login.getCampoCorreo().getText());
+                user.setCorreo(login.getCampoCorreo().getText().trim());
             } catch(MailException e) {
                 JOptionPane.showMessageDialog(login, "Correo inválido.", "Error al ingresar el correo", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            
-            System.out.println(user.getCorreo());
-            
-            //Excepcion de login
-            try {
-                empleado.setNombre(user.getNombre());
-                cliente.setNombre(user.getNombre());
-            } catch (NameException ex) {
-                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
-            try {
-                empleado.setCorreo(user.getCorreo());
-                cliente.setCorreo(user.getCorreo());
-            }   catch (MailException ex1) {
-                    Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex1);
-                }
-            try {
-                empleado.setRut(user.getRut());
-                cliente.setRut(user.getRut());
-            }   catch (RutException ex1) {
-                    Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex1);
-                }
-            }
+            cliente = new Cliente(user.getNombre(), user.getRut(), user.getCorreo());
+            empleado = new Empleado(user.getNombre(), user.getRut(), user.getCorreo());
+           
             menuMain = new VentanaPrincipal();
-            
+
             menuMain.getBotonCliente().addActionListener(this);
             menuMain.getBotonEmpleado().addActionListener(this);
             
@@ -141,7 +123,7 @@ public class Controlador implements ActionListener{
         }
         
         // Acciones menu Main
-        if(ee.getSource() == menuMain.getBotonCliente()){
+        if(menuMain != null && ee.getSource() == menuMain.getBotonCliente()){
             menuCliente = new VentanaCliente(supermercado.listaDeProductosNombrePrecio());
 
             menuCliente.getBotonVolverMenuCliente().addActionListener(this);
@@ -215,7 +197,11 @@ public class Controlador implements ActionListener{
                 ventanaUsuarioCliente = new VentanaUsuarioCliente(datos[3]);
             else
                 ventanaUsuarioCliente = new VentanaUsuarioCliente("");
-            System.out.println(datos[1]);
+            
+            for(int i = 0; i < datos.length; i++){
+                System.out.println(datos[i]);
+            }
+            
             ventanaUsuarioCliente.getBotonVovlerHistorial().addActionListener(this);
             ventanaUsuarioCliente.getTitulo().setText("Bienvenido" + " " + datos[0]);
             ventanaUsuarioCliente.getTextoRutCliente().setText(" Rut cliente: " + datos[1]);

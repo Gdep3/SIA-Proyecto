@@ -18,16 +18,17 @@ public class Usuario{
     public Usuario() {
     }
     
-    public Usuario(String nombre, String rut){
+    public Usuario(String nombre, String rut, String correo){
         this.nombre = nombre;
         this.rut = rut;
+        this.correo = correo;
     }
     
     //Metodos
     
     //metodo para convertir de dato a Strinf nombre y rut
     public String datosAString(){
-        return nombre + ", " + rut;
+        return nombre + ", " + rut + ", " + correo;
     }
     
     //Metodos setter
@@ -52,7 +53,7 @@ public class Usuario{
         char guion = rut.charAt(rut.length() - 2);
         if (guion != '-') {
             throw new RutException();
-        }
+        } 
         this.rut = rut;
         
     }
