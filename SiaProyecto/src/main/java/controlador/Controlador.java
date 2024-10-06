@@ -33,6 +33,7 @@ public class Controlador implements ActionListener{
     private VentanaCliente menuCliente;
     private VentanaCarrito menuCarrito;
     private VentanaListar_Modificar_Eliminar ventanaListarModificarEliminar;
+    private VentanaUsuarioCliente ventanaUsuarioCliente;
     private VentanaAgregar menuAgregar;
     private VentanaLogin login;
     
@@ -109,6 +110,7 @@ public class Controlador implements ActionListener{
             menuCliente.getBotonBuscar().addActionListener(this);
             menuCliente.getBotonAñadirCarritoMenuCliente().addActionListener(this);
             menuCliente.getBotonCarrito().addActionListener(this);
+            menuCliente.getBotonUsuarioCliente().addActionListener(this);
             
             menuCliente.setAlwaysOnTop(true);
             menuCliente.setTitle("Menu Cliente");
@@ -167,12 +169,36 @@ public class Controlador implements ActionListener{
             menuCarrito.setLocationRelativeTo(null);
             menuCarrito.setVisible(true);
             return;
-
         }
         if(menuCliente != null && ee.getSource() == menuCliente.getBotonUsuarioCliente()){
+            String[] datos = cliente.datosAString().split(";");
+
+            if(datos.length == 3)
+                ventanaUsuarioCliente = new VentanaUsuarioCliente(datos[2]);
+            else
+                ventanaUsuarioCliente = new VentanaUsuarioCliente("");
+            
+            ventanaUsuarioCliente.getBotonVovlerHistorial().addActionListener(this);
+            ventanaUsuarioCliente.getTitulo().setText("Bienvenido" + " " + datos[0]);
+            ventanaUsuarioCliente.getTextoRutCliente().setText(" Rut cliente: " + datos[1].trim());
+            ventanaUsuarioCliente.getTextoEmailCliente().setText(" Email cliente: ");
+            
+            ventanaUsuarioCliente.setAlwaysOnTop(true);
+            ventanaUsuarioCliente.setTitle("Cliente");
+            ventanaUsuarioCliente.setSize(500, 400);
+            ventanaUsuarioCliente.setResizable(false);
+            ventanaUsuarioCliente.setLocationRelativeTo(null);
+            ventanaUsuarioCliente.setVisible(true);
+
             return;
         }
+        if(ventanaUsuarioCliente != null && ee.getSource() == ventanaUsuarioCliente.getBotonVovlerHistorial()){
+            ventanaUsuarioCliente.dispose();
+            return;
+        }
+        
         //Accines menu carrito.
+        
         //Añadir a carrito.
         if(menuCliente != null && ee.getSource() == menuCliente.getBotonAñadirCarritoMenuCliente()){
             DefaultTableModel model = (DefaultTableModel) menuCliente.getListaCliente().getModel();
@@ -214,6 +240,11 @@ public class Controlador implements ActionListener{
                 supermercado.setVentas(cliente.getTotalComprasCantidad());
                 supermercado.setStockTotal(cliente.getTotalComprasCantidad() * -1);
                 cliente.añadirAHistorial();
+                try {
+                    supermercado.reportar(cliente.getHistorialCompras());
+                } catch (IOException ex) {
+                    Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 cliente.vaciarCarrito();
                 menuCarrito.dispose();
             }
@@ -271,7 +302,9 @@ public class Controlador implements ActionListener{
             menuCarrito.dispose();
             return;
         } 
+        
         //Acciones menu empleado.
+        
         //Agregar.
         if(menuEmpleado != null && ee.getSource() == menuEmpleado.getBotonAgregar()){
             menuAgregar = new VentanaAgregar();
@@ -306,12 +339,7 @@ public class Controlador implements ActionListener{
             return;
         }
         if(menuEmpleado != null && ee.getSource() == menuEmpleado.getBotonReporte()){
-            Producto producto0 = new Producto("Leche", "123456789123", "Lacteos", 910, 12);
-            try {
-                supermercado.reportar(producto0);
-            } catch (IOException ex) {
-                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            JOptionPane.showMessageDialog(menuEmpleado, "Creación del reporte completada.", "Reporte completado", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         if(menuEmpleado != null && ee.getSource() == menuEmpleado.getBotonVolver()){
@@ -405,7 +433,9 @@ public class Controlador implements ActionListener{
             menuAgregar.dispose();
             return;
         }
+        
         //Acciones ventana listar/modificar/eliminar.
+        
         //Volver a ventana anterior.
         if(ventanaListarModificarEliminar != null && ee.getSource() == ventanaListarModificarEliminar.getBotonVolverVentanaListar()){
             ventanaListarModificarEliminar.dispose();

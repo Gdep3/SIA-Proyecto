@@ -19,7 +19,13 @@ public class Cliente extends Usuario{
     
     @Override
     public String datosAString(){
-        return getNombre() + ", " + getRut();
+        
+        String stringHistorial = "";
+        for(int i = 0; i < historialCompras.size(); i++){
+            stringHistorial += historialCompras.get(i);
+        }
+
+        return getNombre() + ";" + getRut() + ";" + stringHistorial;
     }
         
     public void guardarCompras(String nombre, double precio, int cantidad){
@@ -36,8 +42,8 @@ public class Cliente extends Usuario{
 
        //Se prodia mejorar la comprobacion del arreglo.
         if(arr.length >= 1 && !arr[0].equals("")){
-            for(int i = 0; i < arr.length; i++){
-                String[] data = arr[i].split(",");
+            for (String arr1 : arr) {
+                String[] data = arr1.split(",");
                 totalComprasPrecio += (Double.parseDouble(data[1].trim()) * Integer.parseInt(data[2].trim()));
                 totalComprasCantidad += Integer.parseInt(data[2].trim());
             }
@@ -73,7 +79,11 @@ public class Cliente extends Usuario{
         }
         return comp;
     }
-
+    
+    public ArrayList<String> getHistorialCompras(){
+        return historialCompras;
+    }
+    
     public int getTotalComprasCantidad() {
         return totalComprasCantidad;
     }    
