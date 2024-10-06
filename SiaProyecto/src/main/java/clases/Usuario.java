@@ -4,12 +4,17 @@ import excepciones.NameException;
 import excepciones.RutException;
 import excepciones.MailException;
 
+/*
+Esta clase se encargad de manejar los objetos usuario y sus distintos metodos
+nos sirve como clase padre para cliente.
+*/
 
 public class Usuario{
     private String nombre;
     private String rut;
     private String correo;
     
+    //Constructores
     public Usuario() {
     }
     
@@ -17,16 +22,22 @@ public class Usuario{
         this.nombre = nombre;
         this.rut = rut;
     }
+    
+    //Metodos
+    
+    //metodo para convertir de dato a Strinf nombre y rut
     public String datosAString(){
         return nombre + ", " + rut;
     }
     
+    //Metodos setter
     public void setNombre(String nombre) throws NameException{
         if(nombre != null && !nombre.equals(""))
             this.nombre = nombre;
         else
             throw new NameException("Nombre no válido");
     }
+    
     public void setRut(String rut) throws RutException{
         if (rut == null || rut.isEmpty()) {
             throw new RutException();
@@ -62,6 +73,7 @@ public class Usuario{
         }
     }
     
+    //Metodos getter
     public String getNombre(){
         return nombre;
     }

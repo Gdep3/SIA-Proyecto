@@ -13,14 +13,11 @@ funciones que administran bien las colecciones.
 */
 
 public class Pasillo {
-    //variables
     private int stockPasillo;
     private String categoriaPasillo;
-    
-    //arrayslist con los productos
     private ArrayList<Producto> productosPasillo;
     
-    //constructores
+    //Constructores
     public Pasillo(ArrayList<Producto> totalProductos, String categoriaPasillo, int stockPasillo) {
         this.categoriaPasillo = categoriaPasillo;
         this.stockPasillo = stockPasillo;
@@ -63,16 +60,6 @@ public class Pasillo {
         stockPasillo += cantidad;
         productosPasillo.add(producto);
     }
-    /*public void cambiarAtributosProducto(Producto producto, String nombre, String codigo, String categoria, String precio, String cantidad) throws NameException {
-        int index = productosPasillo.indexOf(producto);
-        Producto productoPasillo = productosPasillo.get(index);
-        
-        if(productoPasillo != null){
-            cambiarNombre(productoPasillo, nombre)
-        }
-        else
-            System.out.println("No se encuentra ese producto.");
-    }*/
     
     //metodo para cambiar el nombre de un producto
     public boolean cambiarNombre(Producto producto, String nombre) throws NameException{
@@ -110,7 +97,6 @@ public class Pasillo {
         else
             return false;
     }
-
     
     //metodo para cambiar la cantidad de un producto
     public boolean cambiarCantidad(Producto producto, String cantidad) throws NumberException{
@@ -123,7 +109,7 @@ public class Pasillo {
             return false;
     }
     
-    //metodo para eliminar un producto
+    //metodo para eliminar un producto a travez del nombre
     public boolean eliminarProducto(String nombre){
         for(int i = 0; i < productosPasillo.size(); i++)
         {
@@ -137,7 +123,8 @@ public class Pasillo {
         } 
         return false;  
     }
-    //Tal vez no se utilize.
+    
+    //metodo para elminar prodcuto a traves de un objeto producto
    public boolean eliminarProducto(Producto producto1){
         for(int i = 0; i < productosPasillo.size(); i++){
             Producto producto = productosPasillo.get(i);
@@ -151,6 +138,7 @@ public class Pasillo {
         return false;
     }
     
+   //metodo para buscar producto por su nombre
     public Producto buscarProducto(String nombre){
         for(int i = 0; i < productosPasillo.size(); i++){
             Producto producto = productosPasillo.get(i);
@@ -164,7 +152,11 @@ public class Pasillo {
     public void listarProductos(){
         for(int i = 0; i < productosPasillo.size(); i++){
             Producto producto = productosPasillo.get(i);
-            System.out.println("Nombre: "+producto.getNombre()+", Codigo: "+producto.getCodigo()+", Categoria: "+producto.getCategoria()+", Precio: "+producto.getPrecio()+", Cantidad: "+producto.getCantidad());
+            System.out.println("Nombre: " + producto.getNombre()+ ", Codigo: " + 
+                                producto.getCodigo() + ", Categoria: " + 
+                                producto.getCategoria() + ", Precio: " + 
+                                producto.getPrecio() + ", Cantidad: " +
+                                producto.getCantidad());
         }
     }
     
@@ -189,6 +181,7 @@ public class Pasillo {
         else
             throw new NumberException("Stock invalido.");
     }
+    
     //Metodos Getters.
     public String getCategoriaPasillo(){
         return categoriaPasillo;

@@ -24,7 +24,7 @@ public class CsvFileReader {
         this.delimiter = delimiter;
     }
     
-    //Funcion para leer el csv
+    //Funcion para leer el csv con productos para el supermercado
     public Supermercado leerCsv(String archivo) {
         Map<String, Pasillo> pasillos_Categoria = new HashMap<>();
         ArrayList<Pasillo> pasillos = new ArrayList<>();

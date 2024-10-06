@@ -25,7 +25,6 @@ distintas tareas para las ventanas.
 public class Controlador implements ActionListener{
     private Supermercado supermercado;
     private Cliente cliente;
-    
     private VentanaPrincipal menuMain;
     private VentanaEmpleado menuEmpleado;
     private VentanaCliente menuCliente;
@@ -35,6 +34,7 @@ public class Controlador implements ActionListener{
     private VentanaAgregar menuAgregar;
     private VentanaLogin login;
     Usuario user = new Usuario();
+    
     //funcion para iniciar el programa 
     public void iniciar(){
         supermercado = new Supermercado();
@@ -229,6 +229,7 @@ public class Controlador implements ActionListener{
             }
             return;
         }
+        
         //Comprar en carrito
         if(menuCarrito != null && ee.getSource() ==  menuCarrito.getBotonComprarCarrito()){   
             if(cliente.getTotalComprasCantidad() != 0){
@@ -246,6 +247,7 @@ public class Controlador implements ActionListener{
              JOptionPane.showMessageDialog(menuCarrito, "Compra dentro del reporte.", "Reporte completado", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
+        
         //Eliminar del carrito.
         if(menuCarrito != null && ee.getSource() == menuCarrito.getBotonEliminarCarrito()){
             DefaultTableModel model = (DefaultTableModel) (menuCarrito.getListaCompras()).getModel();

@@ -20,8 +20,8 @@ public class Producto {
     private int precio = -1;
     
     //Constructores.
-    public Producto(){
-    }
+    public Producto(){}
+    
     public Producto(String nombre, String codigo, String categoria, int precio, int cantidad)
     {
         this.nombre = nombre;
@@ -34,9 +34,11 @@ public class Producto {
     public String obtenerStringAtributos() {
        return codigo+", "+nombre+", "+categoria+ ", "+cantidad + ", " + precio + "\n";
     }
+    
     public String obtenerNombrePrecioCantidad(){
         return nombre + ", " + precio + ", " + cantidad +"\n";
     }
+    
     //Metodos Setters.
     public void setNombre(String nombre) throws NameException{
         if(nombre != null && !nombre.equals(""))
