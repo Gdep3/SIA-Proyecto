@@ -1,22 +1,16 @@
     package clases;
 
 public class Empleado extends Usuario{
-    private int codigoGerente;
     
-    public Empleado(String nombre, String rut, int codigoGerente){
-        super(nombre, rut);
-        this.codigoGerente = codigoGerente;
+    
+    public Empleado() {
     }
-    
+    public Empleado(String nombre, String rut){
+        super(nombre, rut);
+    }
+   
     @Override
     public String datosAString(){
-        return getNombre() + ", " + getRut() + ", " + codigoGerente;
-    }
-
-    public void setCodigoGerente(int codigo){
-        codigoGerente = codigo;
-    }
-    public int getCodigoGerente(){
-        return codigoGerente;
+        return getNombre() + ", " + getRut();
     }
 }

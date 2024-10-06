@@ -80,6 +80,7 @@ public class VentanaCarrito extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        listaCompras.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(listaCompras);
 
         titulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -123,10 +124,11 @@ public class VentanaCarrito extends javax.swing.JFrame {
                     .addComponent(comprarTexto)
                     .addComponent(totalTexto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonEliminarCarrito)
-                    .addComponent(botonComprarCarrito)
-                    .addComponent(botonVovlerCarrito))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(botonComprarCarrito)
+                        .addComponent(botonVovlerCarrito)))
                 .addGap(14, 14, 14))
         );
 

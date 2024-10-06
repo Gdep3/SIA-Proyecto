@@ -19,7 +19,13 @@ public class Cliente extends Usuario{
     
     @Override
     public String datosAString(){
-        return getNombre() + ", " + getRut();
+        
+        String stringHistorial = "";
+        for(int i = 0; i < historialCompras.size(); i++){
+            stringHistorial += historialCompras.get(i);
+        }
+
+        return getNombre() + ";" + getRut() + ";" + stringHistorial;
     }
         
     public void guardarCompras(String nombre, double precio, int cantidad){
@@ -73,7 +79,7 @@ public class Cliente extends Usuario{
         }
         return comp;
     }
-
+    
     public int getTotalComprasCantidad() {
         return totalComprasCantidad;
     }    

@@ -18,6 +18,7 @@ public class VentanaEmpleado extends javax.swing.JFrame {
      */
     public VentanaEmpleado() {
         initComponents();
+        
     }
 
     /**
@@ -29,11 +30,20 @@ public class VentanaEmpleado extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        botonUsuarioCliente = new javax.swing.JButton();
         botonAgregar = new javax.swing.JButton();
         botonReporte = new javax.swing.JButton();
         botonListar_Modificar_Eliminar = new javax.swing.JButton();
         titulo = new javax.swing.JLabel();
         botonVolverMenuEmpleado = new javax.swing.JButton();
+        botonUsuarioEmpleado = new javax.swing.JButton();
+
+        botonUsuarioCliente.setText("Usuario");
+        botonUsuarioCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonUsuarioClienteActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(500, 400));
@@ -65,6 +75,13 @@ public class VentanaEmpleado extends javax.swing.JFrame {
             }
         });
 
+        botonUsuarioEmpleado.setText("Usuario");
+        botonUsuarioEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonUsuarioEmpleadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,21 +95,27 @@ public class VentanaEmpleado extends javax.swing.JFrame {
                     .addComponent(botonVolverMenuEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(138, Short.MAX_VALUE))
             .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonUsuarioEmpleado)
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(186, 186, 186)
+                .addGap(26, 26, 26)
+                .addComponent(botonUsuarioEmpleado)
+                .addGap(26, 26, 26)
                 .addComponent(titulo)
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addComponent(botonAgregar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(botonListar_Modificar_Eliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(botonReporte)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(botonVolverMenuEmpleado)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         pack();
@@ -110,6 +133,9 @@ public class VentanaEmpleado extends javax.swing.JFrame {
     public JButton getBotonVolver(){
         return botonVolverMenuEmpleado;
     }
+    public JButton getBotonUsuarioEmpleado() {
+        return botonUsuarioEmpleado;
+    }
 
     
     
@@ -125,10 +151,20 @@ public class VentanaEmpleado extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonListar_Modificar_EliminarActionPerformed
 
+    private void botonUsuarioClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUsuarioClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonUsuarioClienteActionPerformed
+
+    private void botonUsuarioEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUsuarioEmpleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonUsuarioEmpleadoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregar;
     private javax.swing.JButton botonListar_Modificar_Eliminar;
     private javax.swing.JButton botonReporte;
+    private javax.swing.JButton botonUsuarioCliente;
+    private javax.swing.JButton botonUsuarioEmpleado;
     private javax.swing.JButton botonVolverMenuEmpleado;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
