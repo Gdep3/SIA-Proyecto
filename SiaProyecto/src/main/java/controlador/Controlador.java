@@ -1,20 +1,28 @@
 package controlador;
 
+import clases.Pasillo;
 import clases.*;
 import excepciones.*;
 import java.awt.event.ActionEvent;
 import ventanas.*;
 
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-/**
- *
- * @author Isidora Osorio
- */
+
+/*
+Esta clase se encarga de coecionar las funciones del programa con las ventanas
+manejando distintos errores que puedan suceder, tambien de ultilizando distintos
+metodos, tanto de otras clases como propios. Ultiliza libreirias para realizar
+distintas tareas para las ventanas.
+*/
+
 public class Controlador implements ActionListener{
     private Supermercado supermercado;
     private VentanaPrincipal menuMain;
@@ -24,37 +32,11 @@ public class Controlador implements ActionListener{
     private VentanaAgregar menuAgregar;
     private VentanaLogin login;
     
+    //funcion para iniciar el programa 
     public void iniciar(){
         supermercado = new Supermercado();
-
-        
-        Pasillo pasillo1 = new Pasillo("Lacteos");
-        pasillo1.agregarProducto("Leche", "123456789123", "Lacteos", 910, 12);
-        pasillo1.agregarProducto("Yogurt", "874367313888", "Lacteos", 800, 10);
-        pasillo1.agregarProducto("Queso Mozzarella", "787900343436", "Lacteos", 1000, 9);
-        pasillo1.agregarProducto("Leche desnatada", "485735285033", "Lacteos", 940, 30);
-        supermercado.agregarPasillo(pasillo1);
-        
-        pasillo1 = new Pasillo("Liquidos");
-        pasillo1.agregarProducto("Coca-cola", "189841362605", "Liquidos", 500, 12);
-        pasillo1.agregarProducto("Jugo de naranja", "450502605552", "Liquidos", 450, 10);
-        pasillo1.agregarProducto("Jugo de durazno", "007696414537", "Liquidos", 500, 13);
-        pasillo1.agregarProducto("Pepsi", "767085689872", "Liquidos", 450, 10);
-        supermercado.agregarPasillo(pasillo1);
-
-        pasillo1 = new Pasillo("Congelados");
-        pasillo1.agregarProducto("Calamar", "376216680309", "Congelados", 1200, 12);
-        pasillo1.agregarProducto("Nuggets de pollo", "237924710845", "Congelados", 500, 30);
-        pasillo1.agregarProducto("Reineta", "557377550295", "Congelados", 2000, 25);
-        pasillo1.agregarProducto("Chuleta de cerdo", "294327564746", "Congelados", 2500, 40);
-        supermercado.agregarPasillo(pasillo1);
-
-        pasillo1 = new Pasillo("Cuidado personal");
-        pasillo1.agregarProducto("Shampoo", "805501899660", "Cuidado personal", 1250, 20);
-        pasillo1.agregarProducto("Jabón", "748506753912", "Cuidado personal", 1200, 30);
-        pasillo1.agregarProducto("Perfume", "427309492941", "Cuidado personal", 2500, 25);
-        pasillo1.agregarProducto("Pasta de dientes", "084943503992", "Cuidado personal", 1000, 40);
-        supermercado.agregarPasillo(pasillo1);
+        CsvFileReader archivo = new CsvFileReader(";");
+        supermercado = archivo.leerCsv("src/main/recursos/datosSupermercado.csv");
         
         login = new VentanaLogin();
         
@@ -182,6 +164,7 @@ public class Controlador implements ActionListener{
             menuAgregar.setResizable(false);
             menuAgregar.setLocationRelativeTo(null);
             menuAgregar.setVisible(true);
+            //supermercado.guardarEnCsv(producto);
             return;
         }
         //Listar/Modificar/Eliminar
@@ -245,7 +228,9 @@ public class Controlador implements ActionListener{
             }
             //Agregar precio a producto nuevo.
             try{
-                producto1.setPrecio(Double.parseDouble(menuAgregar.getCampoPrecio().getText()));
+
+                producto1.setPrecio(Integer.parseInt(menuAgregar.getCampoPrecio().getText()));
+                producto1.setPrecio(Integer.parseInt(menuAgregar.getCampoPrecio().getText()));
             }catch(NumberException e){
                 JOptionPane.showMessageDialog(menuAgregar, "Precio invalido.\nIngrese un número entero positivo.", "Error al ingresar el precio", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -263,6 +248,7 @@ public class Controlador implements ActionListener{
                 JOptionPane.showMessageDialog(menuAgregar, "Error al ingresa la cantidad.\nIntente nuevamente.", "Error al ingresar la cantidad", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+
             //Agregar pasillo nuevo, si el usuario asi lo quiere.
             if(supermercado.buscarPasillo(producto1.getCategoria()) == null){
                 int respuesta = JOptionPane.showConfirmDialog(menuAgregar, "Pasillo ingresado no valido.\n¿Desea crear un pasillo nuevo?", "Error al ingresar el producto", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
@@ -278,6 +264,11 @@ public class Controlador implements ActionListener{
             }catch(Exception e){
                 JOptionPane.showMessageDialog(menuAgregar, "Error al añadir producto.\nIntente nuevamente.", "Error al ingresar el producto", JOptionPane.ERROR_MESSAGE);
                 return;
+            }
+            try {
+                supermercado.guardarEnCsv(producto1);
+            } catch (IOException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
             }
             //Cerrar ventana.
             menuAgregar.dispose();
@@ -306,6 +297,7 @@ public class Controlador implements ActionListener{
                 if(respuesta == JOptionPane.YES_OPTION){     
                     //Se elimina del supermercado.
                     supermercado.eliminarProductoDelSupermercado(nombre);
+                    supermercado.eliminarProductoDeCsv(nombre);
                     //Se elimina de la tabla.
                     model.removeRow(ventanaListarModificarEliminar.getListTable().convertRowIndexToModel((ventanaListarModificarEliminar.getListTable().getSelectedRow())));
 
