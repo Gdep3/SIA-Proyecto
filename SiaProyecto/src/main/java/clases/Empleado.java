@@ -1,17 +1,23 @@
 package clases;
 
+import java.util.ArrayList;
+
 /*
 Esta clase que se extiende de usuario se encarga administrar los metodos del
 usuario y crear el objeto como tal.
 */
 
 public class Empleado extends Usuario{
-    private int codigoGerente;
+    private ArrayList<String> productoSinStock;
     
     //Constructor
-    public Empleado(String nombre, String rut, int codigoGerente){
+    public Empleado(String nombre, String rut){
         super(nombre, rut);
-        this.codigoGerente = codigoGerente;
+        productoSinStock = new ArrayList();
+    }
+    
+    public Empleado(){
+        this.productoSinStock = new ArrayList<>();
     }
     
     //Metodos
@@ -19,16 +25,18 @@ public class Empleado extends Usuario{
     
     //metodo para pasar de datos a String el nombre, rut y codigo
     public String datosAString(){
-        return getNombre() + ", " + getRut() + ", " + codigoGerente;
+        String stringProductosSinStock = "";
+        for(int i = 0; i < productoSinStock.size(); i++){
+            stringProductosSinStock += productoSinStock.get(i);
+        }
+        
+        return getNombre() + "; " + getRut()+";"+ getCorreo() + ";" +stringProductosSinStock;
     }
-    
-    //metodo setter
-    public void setCodigoGerente(int codigo){
-        codigoGerente = codigo;
+    public void vaciarProductosSinStock(){
+        productoSinStock.removeAll(productoSinStock);
     }
-    
-    //metodo getter
-    public int getCodigoGerente(){
-        return codigoGerente;
+    public void agregarProductosSinStock(String datos){
+        if(productoSinStock.contains(datos) == false)
+            productoSinStock.add(datos);
     }
 }

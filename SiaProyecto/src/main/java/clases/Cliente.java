@@ -35,7 +35,8 @@ public class Cliente extends Usuario{
             stringHistorial += historialCompras.get(i);
         }
 
-        return getNombre() + ";" + getRut() + ";" + stringHistorial;
+        return getNombre() + ";" + getRut() + ";" + getCorreo() + ";"
+                + stringHistorial;
     }
     
     //metodos para guardar compras dentro de lista de productos comprados

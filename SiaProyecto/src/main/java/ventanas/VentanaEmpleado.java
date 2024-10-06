@@ -33,6 +33,7 @@ public class VentanaEmpleado extends javax.swing.JFrame {
         botonListar_Modificar_Eliminar = new javax.swing.JButton();
         titulo = new javax.swing.JLabel();
         botonVolverMenuEmpleado = new javax.swing.JButton();
+        botonUsuarioEmpleado = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(500, 400));
@@ -62,6 +63,8 @@ public class VentanaEmpleado extends javax.swing.JFrame {
             }
         });
 
+        botonUsuarioEmpleado.setText("Usuario");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,12 +76,18 @@ public class VentanaEmpleado extends javax.swing.JFrame {
                     .addComponent(botonListar_Modificar_Eliminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonVolverMenuEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(138, Short.MAX_VALUE))
-            .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonUsuarioEmpleado)
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(botonUsuarioEmpleado)
+                .addGap(42, 42, 42)
                 .addComponent(titulo)
                 .addGap(18, 18, 18)
                 .addComponent(botonAgregar)
@@ -102,6 +111,9 @@ public class VentanaEmpleado extends javax.swing.JFrame {
         return botonVolverMenuEmpleado;
     }
 
+    public JButton getBotonUsuarioEmpleado() {
+        return botonUsuarioEmpleado;
+    }
     
     
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
@@ -119,6 +131,7 @@ public class VentanaEmpleado extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregar;
     private javax.swing.JButton botonListar_Modificar_Eliminar;
+    private javax.swing.JButton botonUsuarioEmpleado;
     private javax.swing.JButton botonVolverMenuEmpleado;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
