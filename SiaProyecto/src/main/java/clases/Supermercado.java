@@ -152,11 +152,15 @@ public class Supermercado {
     public void listarPasillos(){
         for(int i = 0; i < pasillos.size(); i++){
             Pasillo pasillo = pasillos.get(i);
-            System.out.println("Categoria pasillo: " + pasillo.getCategoriaPasillo() + ", Stock del pasillo: " + pasillo.getStockPasillo());
+            System.out.println("Categoria pasillo: " + pasillo.getCategoriaPasillo() 
+                                + ", Stock del pasillo: " + pasillo.getStockPasillo());
             //pasillo.listarProductos();
         }
     }
+    
     //Metodos sobre productos.
+    
+    //metodo para añadir productos al supermercado
     public void añadirProductoASupermercado(Producto producto1) throws CorridorException{
         Pasillo pasillo1 = pasillosPorCategoria.get(producto1.getCategoria());
         if(pasillo1 != null){
@@ -165,6 +169,8 @@ public class Supermercado {
         else
             throw new CorridorException("Pasillo invalido.");
     }
+    
+    //metodo para listar productos dentro del sepermercado por sus atributos
     public String listaDeProductos(){
         String ret;
         ret = "";
@@ -178,6 +184,7 @@ public class Supermercado {
         return ret;
     }
     
+    //metodo para mostrar la lista de productos por nombre y precio
     public String listaDeProductosNombrePrecio(){
         String ret;
         ret = "";
@@ -190,11 +197,15 @@ public class Supermercado {
         }
         return ret;
     }
+    
+    //metodo para listar los productos en el supermercado
     public void listarProductosEnSupermercado(){
         for(int i = 0; i < pasillos.size(); i++){
             ((Pasillo)pasillos.get(i)).listarProductos();
         }
     }
+    
+    //metodo para buscar productos en el supermercado a traves del nombre
     public boolean buscarProductoEnSupermercado(String nombre){
         for(int  i = 0; i < pasillos.size(); i++){
             Producto producto1 = ((Pasillo)pasillos.get(i)).buscarProducto(nombre);
@@ -203,6 +214,8 @@ public class Supermercado {
         }
         return false;
     }
+    
+    //metodo para obtener producto en el supermercado por el nombre
     public Producto obtenerProductoEnSupermercado(String nombre){
         for(int i = 0; i < pasillos.size(); i++){
             Producto producto1 = ((Pasillo)pasillos.get(i)).buscarProducto(nombre);
@@ -211,6 +224,8 @@ public class Supermercado {
         }
         return null;
     }
+    
+    //metodo de elminar productos del supermercado por su nombre
     public void eliminarProductoDelSupermercado(String nombre){
         for(int i = 0; i < pasillos.size(); i++){
             Producto producto1 = ((Pasillo)pasillos.get(i)).buscarProducto(nombre);
@@ -221,6 +236,8 @@ public class Supermercado {
             }   
         }
     }
+    
+    //metodo de eliminar productos del supermercado por categoria y nombre
     public void eliminarProductoDelSupermercado(String categoria, String nombre){
         Pasillo pasillo1 = pasillosPorCategoria.get(categoria);
 
