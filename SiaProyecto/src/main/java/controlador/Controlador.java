@@ -28,12 +28,13 @@ public class Controlador implements ActionListener{
     private VentanaCliente menuCliente;
     private VentanaCarrito menuCarrito;
     private VentanaListar_Modificar_Eliminar ventanaListarModificarEliminar;
+    private VentanaUsuarioCliente ventanaUsuarioCliente;
     private VentanaAgregar menuAgregar;
     
     public void iniciar(){
         supermercado = new Supermercado();
         
-        cliente = new Cliente("jkdsf", "21674373-3");
+        cliente = new Cliente("Jose", "21274476-3");
         
         Pasillo pasillo1 = new Pasillo("Lacteos");
         pasillo1.agregarProducto("Leche", "123456789123", "Lacteos", 910, 12);
@@ -99,6 +100,7 @@ public class Controlador implements ActionListener{
             menuCliente.getBotonBuscar().addActionListener(this);
             menuCliente.getBotonAñadirCarritoMenuCliente().addActionListener(this);
             menuCliente.getBotonCarrito().addActionListener(this);
+            menuCliente.getBotonUsuarioCliente().addActionListener(this);
             
             menuCliente.setAlwaysOnTop(true);
             menuCliente.setTitle("Menu Cliente");
@@ -157,9 +159,31 @@ public class Controlador implements ActionListener{
             menuCarrito.setLocationRelativeTo(null);
             menuCarrito.setVisible(true);
             return;
-
         }
         if(menuCliente != null && ee.getSource() == menuCliente.getBotonUsuarioCliente()){
+            String[] datos = cliente.datosAString().split(";");
+
+            if(datos.length == 3)
+                ventanaUsuarioCliente = new VentanaUsuarioCliente(datos[2]);
+            else
+                ventanaUsuarioCliente = new VentanaUsuarioCliente("");
+            
+            ventanaUsuarioCliente.getBotonVovlerHistorial().addActionListener(this);
+            ventanaUsuarioCliente.getTitulo().setText("Bienvenido" + " " + datos[0]);
+            ventanaUsuarioCliente.getTextoRutCliente().setText(" Rut cliente: " + datos[1].trim());
+            ventanaUsuarioCliente.getTextoEmailCliente().setText(" Email cliente: " + "a@gmail.com");
+            
+            ventanaUsuarioCliente.setAlwaysOnTop(true);
+            ventanaUsuarioCliente.setTitle("Cliente");
+            ventanaUsuarioCliente.setSize(500, 400);
+            ventanaUsuarioCliente.setResizable(false);
+            ventanaUsuarioCliente.setLocationRelativeTo(null);
+            ventanaUsuarioCliente.setVisible(true);
+
+            return;
+        }
+        if(ventanaUsuarioCliente != null && ee.getSource() == ventanaUsuarioCliente.getBotonVovlerHistorial()){
+            ventanaUsuarioCliente.dispose();
             return;
         }
         //Accines menu carrito.
@@ -295,6 +319,7 @@ public class Controlador implements ActionListener{
             return;
         }
         if(menuEmpleado != null && ee.getSource() == menuEmpleado.getBotonReporte()){
+            JOptionPane.showMessageDialog(menuEmpleado, "Creación del reporte completada.", "Reporte completado", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         if(menuEmpleado != null && ee.getSource() == menuEmpleado.getBotonVolver()){
