@@ -34,8 +34,8 @@ public class Producto {
     public String obtenerStringAtributos() {
        return codigo+", "+nombre+", "+categoria+ ", "+cantidad + ", " + precio + "\n";
     }
-    public String obtenerNombrePrecio(){
-        return nombre + ", " + precio + "\n";
+    public String obtenerNombrePrecioCantidad(){
+        return nombre + ", " + precio + ", " + cantidad +"\n";
     }
     //Metodos Setters.
     public void setNombre(String nombre) throws NameException{

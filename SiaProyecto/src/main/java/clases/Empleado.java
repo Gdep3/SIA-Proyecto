@@ -9,12 +9,10 @@ public class Empleado extends Usuario{
     }
     
     @Override
-    public void mostrarInfo(){
-        System.out.println("Usuario: " + getNombre());
-        System.out.println("Rut: " + getRut());
-        System.out.println("Código del empleado: " + getCodigoGerente());
+    public String datosAString(){
+        return getNombre() + ", " + getRut() + ", " + codigoGerente;
     }
-    
+
     public void setCodigoGerente(int codigo){
         codigoGerente = codigo;
     }

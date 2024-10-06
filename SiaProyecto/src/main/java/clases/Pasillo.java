@@ -138,7 +138,7 @@ public class Pasillo {
         return false;  
     }
     //Tal vez no se utilize.
-   /* public boolean eliminarProducto(Producto producto1){
+   public boolean eliminarProducto(Producto producto1){
         for(int i = 0; i < productosPasillo.size(); i++){
             Producto producto = productosPasillo.get(i);
             if(producto.equals(producto1))
@@ -149,7 +149,7 @@ public class Pasillo {
             }
         }
         return false;
-    }*/
+    }
     
     public Producto buscarProducto(String nombre){
         for(int i = 0; i < productosPasillo.size(); i++){
