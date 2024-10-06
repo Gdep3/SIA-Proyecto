@@ -77,7 +77,7 @@ public class VentanaListar_Modificar_Eliminar extends javax.swing.JFrame {
         listaProductos.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(listaProductos);
 
-        botonVolverVentanaListar.setText("Vovler");
+        botonVolverVentanaListar.setText("Volver");
 
         botonEliminarVentanaListar.setText("Eliminar");
         botonEliminarVentanaListar.addActionListener(new java.awt.event.ActionListener() {

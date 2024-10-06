@@ -30,6 +30,7 @@ public class Controlador implements ActionListener{
     private VentanaCliente menuCliente;
     private VentanaListar_Modificar_Eliminar ventanaListarModificarEliminar;
     private VentanaAgregar menuAgregar;
+    private VentanaLogin login;
     
     //funcion para iniciar el programa 
     public void iniciar(){
@@ -37,22 +38,68 @@ public class Controlador implements ActionListener{
         CsvFileReader archivo = new CsvFileReader(";");
         supermercado = archivo.leerCsv("src/main/recursos/datosSupermercado.csv");
         
-        menuMain = new VentanaPrincipal();
+        login = new VentanaLogin();
         
-        menuMain.getBotonCliente().addActionListener(this);
-        menuMain.getBotonEmpleado().addActionListener(this);
+        login.getBotonAceptar().addActionListener(this);
+        login.getBotonSalir().addActionListener(this);
         
-        menuMain.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        menuMain.setTitle("Menu Inicio");
-        menuMain.setSize(500, 400);
-        menuMain.setResizable(false);
-        menuMain.setLocationRelativeTo(null);
-        menuMain.setVisible(true);
+        login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        login.setTitle("Menu Inicio");
+        login.setResizable(false);
+        login.setLocationRelativeTo(null);
+        login.setVisible(true);
+        
+        
     }
     //Se deberian hacer dos controladores para las opciones de menu cliente y otro para de empleado.
     @Override
     public void actionPerformed(ActionEvent ee){
-        //Acciones menu principal.
+        
+        // Acciones menú login
+        if (ee.getSource() == login.getBotonAceptar()) {
+            
+            Usuario user = new Usuario();
+            // Excepción nombre
+            try {
+                user.setNombre(login.getCampoNombre().getText());
+            } catch(NameException e) {
+                JOptionPane.showMessageDialog(login, "Ingrese un nombre por favor.", "Error nombre no válido", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            // Excepción rut
+            try{
+                user.setRut(login.getCampoRut().getText());
+            }catch(RutException e){
+                JOptionPane.showMessageDialog(login, "Rut inválido.\nIngrese un rut válido.", "Error al ingresar el rut", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            // Excepción correo
+            try {
+                user.setCorreo(login.getCampoCorreo().getText());
+            } catch(MailException e) {
+                JOptionPane.showMessageDialog(login, "Correo inválido.", "Error al ingresar el correo", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            menuMain = new VentanaPrincipal();
+            
+            menuMain.getBotonCliente().addActionListener(this);
+            menuMain.getBotonEmpleado().addActionListener(this);
+            
+            menuMain.setAlwaysOnTop(true);
+            menuMain.setTitle("Menu Main");
+            menuMain.setSize(500, 400);
+            menuMain.setResizable(false);
+            menuMain.setLocationRelativeTo(null);
+            menuMain.setVisible(true);
+            
+            
+        }
+        if (ee.getSource() == login.getBotonSalir()) {
+            System.exit(0);
+        }
+        
+        // Acciones menu Main
         if(ee.getSource() == menuMain.getBotonCliente()){
             menuCliente = new VentanaCliente(supermercado.listaDeProductosNombrePrecio());
 

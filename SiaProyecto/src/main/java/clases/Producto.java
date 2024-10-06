@@ -42,7 +42,7 @@ public class Producto {
         if(nombre != null && !nombre.equals(""))
             this.nombre = nombre;
         else
-            throw new NameException("Nombre no valido");
+            throw new NameException("Nombre no válido");
     }
     public void setCodigo(String codigo) throws CodeException{
         if(codigo.length() == 12)
