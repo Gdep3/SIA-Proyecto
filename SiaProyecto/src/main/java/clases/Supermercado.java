@@ -66,13 +66,13 @@ public class Supermercado {
     }
    
     //metodo para hacer el reporte de productos vendidos
-    public void reportar(ArrayList<String> producto) throws IOException{
+    public void reportar(Cliente cliente) throws IOException{
         String archivoDestino = "src/main/recursos/Reporte.txt";
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoDestino,true))){
             bw.newLine();
-            for(int i = 0 ; i < producto.size(); i++){
-                String[] arr = producto.get(i).split(",");
-                bw.write("Producto: " + arr[0] + "\n" + " - Precio: " + arr[1] + "\n" + " - Cantidad" + arr[2] + "\n");
+            for(int i = 0 ; i < cliente.tallaHistorial(); i++){
+                String[] arr = cliente.buscarEnHistorial(i).split(",");
+                bw.write("Producto: " + arr[0] + "\n" + " - Precio: " + arr[1] + "\n" + " - Cantidad: " + arr[2] + "\n");
                 bw.write("===========================================\n\n");
             }
         } catch(IOException e){

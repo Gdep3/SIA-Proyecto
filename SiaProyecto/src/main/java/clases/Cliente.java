@@ -101,11 +101,15 @@ public class Cliente extends Usuario{
         return comp;
     }
     
-    // metodos Getters
-    public ArrayList<String> getHistorialCompras(){
-        return historialCompras;
+    public String buscarEnHistorial(int i){
+        return historialCompras.get(i);
     }
     
+    public int tallaHistorial(){
+        return historialCompras.size();    
+    }
+    
+    // metodos Getters
     public int getTotalComprasCantidad() {
         return totalComprasCantidad;
     }    

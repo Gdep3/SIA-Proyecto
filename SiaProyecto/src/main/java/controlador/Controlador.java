@@ -268,7 +268,7 @@ public class Controlador implements ActionListener{
                 supermercado.setStockTotal(cliente.getTotalComprasCantidad() * -1);
                 cliente.añadirAHistorial();
                 try {
-                    supermercado.reportar(cliente.getHistorialCompras());
+                    supermercado.reportar(cliente);
                 } catch (IOException ex) {
                     Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
                 }
