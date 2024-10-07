@@ -28,7 +28,7 @@ public class Cliente extends Usuario{
         return getNombre() + ";" + getRut() + ";" + stringHistorial;
     }
         
-    public void guardarCompras(String nombre, double precio, int cantidad){
+    public void guardarCompras(String nombre, int precio, int cantidad){
         String compra = nombre + ", " + precio + ", " + cantidad + "\n";
         if(compras.contains(compra) == false){
             compras.add(compra);
@@ -80,6 +80,10 @@ public class Cliente extends Usuario{
         return comp;
     }
     
+    // Métodos setter y getter
+    public void setTotalComprasCantidad(int totalComprasCantidad) {
+        this.totalComprasCantidad = totalComprasCantidad;
+    }
     public int getTotalComprasCantidad() {
         return totalComprasCantidad;
     }    

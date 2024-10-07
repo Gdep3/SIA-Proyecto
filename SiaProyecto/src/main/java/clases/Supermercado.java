@@ -65,16 +65,15 @@ public class Supermercado {
         }
     }
    
-    //metodo para hacer el reporte de productos vendidos
-    public void reportar(Producto producto) throws IOException{
+   //metodo para hacer el reporte de productos vendidos
+    public void reportar(ArrayList<String> producto) throws IOException{
         String archivoDestino = "src/main/recursos/Reporte.txt";
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoDestino,true))){
-            bw.write("Producto vendido: " + producto.getNombre() + "\n" +
-                    "Codigo: " + producto.getCodigo() + "\n" +
-                    "Categoria: " + producto.getCategoria() + "\n" +
-                    "Precio: " + producto.getPrecio() + "\n" +
-                    "Cantidad vendida: " + producto.getCantidad());
-            bw.write("===========================================\n");
+            bw.newLine();
+            for(int i = 0 ; i < producto.size(); i++){
+                bw.write(producto.get(i));
+                bw.write("===========================================\n");
+            }
         } catch(IOException e){
             System.out.println("Error al escribir en el archivo de ventas: " + e.getMessage());
         }

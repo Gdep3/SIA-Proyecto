@@ -9,10 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author isica
- */
+
 public class VentanaUsuarioCliente extends javax.swing.JFrame {
 
     /**

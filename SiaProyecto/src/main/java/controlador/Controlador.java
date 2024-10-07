@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import ventanas.*;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -37,6 +38,7 @@ public class Controlador implements ActionListener{
     private VentanaUsuarioEmpleado ventanaUsuarioEmpleado;
     private VentanaAgregar menuAgregar;
     private VentanaLogin login;
+    //private ArrayList<String> producto;
     
     //funcion para iniciar el programa 
     public void iniciar(){
@@ -356,11 +358,11 @@ public class Controlador implements ActionListener{
             return;
         }
         if(menuEmpleado != null && ee.getSource() == menuEmpleado.getBotonReporte()){
-            
+            //producto = new ArrayList();
             JOptionPane.showMessageDialog(menuEmpleado, "Creación del reporte completada.", "Reporte completado", JOptionPane.INFORMATION_MESSAGE);
             return;
             /*try {
-                supermercado.reportar();
+                supermercado.reportar(producto);
             } catch (IOException ex) {
                 Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
             }
