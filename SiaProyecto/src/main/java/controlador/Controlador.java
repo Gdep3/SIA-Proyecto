@@ -199,9 +199,9 @@ public class Controlador implements ActionListener{
                 ventanaUsuarioCliente = new VentanaUsuarioCliente("");
             
             ventanaUsuarioCliente.getBotonVovlerHistorial().addActionListener(this);
-            ventanaUsuarioCliente.getTitulo().setText("Bienvenido" + " " + datos[0]);
+            ventanaUsuarioCliente.getTitulo().setText("Bienvenid@" + " " + datos[0]);
             ventanaUsuarioCliente.getTextoRutCliente().setText(" Rut cliente: " + datos[1]);
-            ventanaUsuarioCliente.getTextoEmailCliente().setText(" Email cliente: " + datos[2]);
+            ventanaUsuarioCliente.getTextoEmailCliente().setText(" Correo cliente: " + datos[2]);
             
             ventanaUsuarioCliente.setAlwaysOnTop(true);
             ventanaUsuarioCliente.setTitle("Cliente");
@@ -349,9 +349,9 @@ public class Controlador implements ActionListener{
             else
                 ventanaUsuarioEmpleado = new UsuarioEmpleado("");
 
-            ventanaUsuarioEmpleado.getTituloUsuarioEmpleado().setText("Bienvenido" + " " + datos[0]);
+            ventanaUsuarioEmpleado.getTituloUsuarioEmpleado().setText("Bienvenid@" + " " + datos[0]);
             ventanaUsuarioEmpleado.getTextoRutEmpleado().setText(" Rut empleado: " + datos[1].trim());
-            ventanaUsuarioEmpleado.getCorreoEmpleado().setText(" Correo Empleado: " + datos[2]);
+            ventanaUsuarioEmpleado.getCorreoEmpleado().setText(" Correo empleado: " + datos[2]);
             
             ventanaUsuarioEmpleado.getBotonAgregarStock().addActionListener(this);
             ventanaUsuarioEmpleado.getBotonVolverUsuarioEmpleado().addActionListener(this);

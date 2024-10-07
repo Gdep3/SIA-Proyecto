@@ -32,9 +32,13 @@ public class Empleado extends Usuario{
         
         return getNombre() + "; " + getRut()+";"+ getCorreo() + ";" +stringProductosSinStock;
     }
+    
+    //metodo para vaciar los productos sin stock
     public void vaciarProductosSinStock(){
         productoSinStock.removeAll(productoSinStock);
     }
+    
+    //metodo para agregar Productos sin stock
     public void agregarProductosSinStock(String datos){
         if(productoSinStock.contains(datos) == false)
             productoSinStock.add(datos);

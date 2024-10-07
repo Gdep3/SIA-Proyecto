@@ -10,6 +10,5 @@ public class SiaProyecto{
         //se crea el controlador y se inicia
         Controlador controlador = new Controlador();
         controlador.iniciar();
-        
     }   
 }

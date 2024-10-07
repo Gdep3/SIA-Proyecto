@@ -70,6 +70,8 @@ public class Cliente extends Usuario{
     public void añadirAHistorial(){
         historialCompras.addAll(compras);
     }
+    
+    //metodo para eliminar un compra
     public void eliminarCompra(String nombre){
         for(int i = 0; i < compras.size(); i++){
             if(compras.get(i).contains(nombre)){
@@ -101,10 +103,12 @@ public class Cliente extends Usuario{
         return comp;
     }
     
+    //metodo buscar en el historial
     public String buscarEnHistorial(int i){
         return historialCompras.get(i);
     }
     
+    //metodo para obtener talla del historial
     public int tallaHistorial(){
         return historialCompras.size();    
     }

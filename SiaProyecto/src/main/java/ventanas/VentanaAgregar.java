@@ -117,9 +117,9 @@ public class VentanaAgregar extends javax.swing.JFrame {
 
         nombreTexto.setText("Ingresar nombre:");
 
-        categoriaTexto.setText("Ingresar categoria:");
+        categoriaTexto.setText("Ingresar categoría:");
 
-        codigoTexto.setText("Ingresar codigo:");
+        codigoTexto.setText("Ingresar código:");
 
         cantidadTexto.setText("Ingresar cantidad:");
 

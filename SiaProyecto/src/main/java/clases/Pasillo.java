@@ -175,6 +175,7 @@ public class Pasillo {
             throw new CategoryException("Categoria invalida.");
         }
     }
+    
     public void setStockPasillo(int stockPasillo) throws NumberException{
         if(stockPasillo >= 0)
             this.stockPasillo = stockPasillo;

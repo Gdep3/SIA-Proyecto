@@ -173,12 +173,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="categoriaTexto">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ingresar categoria:"/>
+        <Property name="text" type="java.lang.String" value="Ingresar categor&#xed;a:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="codigoTexto">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ingresar codigo:"/>
+        <Property name="text" type="java.lang.String" value="Ingresar c&#xf3;digo:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="cantidadTexto">

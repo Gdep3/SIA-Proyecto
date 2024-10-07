@@ -31,10 +31,13 @@ public class Producto {
         this.precio = precio;
     }
     
+    //Metodos
+    
     public String obtenerStringAtributos() {
        return codigo+", "+nombre+", "+categoria+ ", "+cantidad + ", " + precio + "\n";
     }
     
+    //metodo para obtener el nombre, precio y cantidad
     public String obtenerNombrePrecioCantidad(){
         return nombre + ", " + precio + ", " + cantidad +"\n";
     }
