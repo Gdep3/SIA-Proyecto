@@ -198,10 +198,6 @@ public class Controlador implements ActionListener{
             else
                 ventanaUsuarioCliente = new VentanaUsuarioCliente("");
             
-            for(int i = 0; i < datos.length; i++){
-                System.out.println(datos[i]);
-            }
-            
             ventanaUsuarioCliente.getBotonVovlerHistorial().addActionListener(this);
             ventanaUsuarioCliente.getTitulo().setText("Bienvenido" + " " + datos[0]);
             ventanaUsuarioCliente.getTextoRutCliente().setText(" Rut cliente: " + datos[1]);
